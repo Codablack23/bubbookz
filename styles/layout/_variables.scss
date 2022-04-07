@@ -1,0 +1,30 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+
+$padding :1.2em;
+$margin :1.2em;
+$layoutHeader:(
+    "background": #DAE3E6C3,
+    "color":#7B7C7C
+);
+$break_point:(
+    "md":890px,
+    "sm":480px
+);
+$justify:(center,space-between,end,space-around);
+$align_items:(center,flex-end,flex-start);
+$theme_color:#1DCEFD;
+$font_size:18px;
+$fonts:(
+    (
+    "family":"Louis George Cafe",
+    "src":"/fonts/Louis_George/Louis George Cafe.ttf"
+    )
+);
+
+// @each $var in $fonts {
+//  
+// }
+@font-face {
+    font-family:"Louis George Cafe";
+    src: url("/fonts/Louis_George/Louis George Cafe.ttf");
+}

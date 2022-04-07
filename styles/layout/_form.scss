@@ -1,0 +1,128 @@
+.form--container{
+    width: 45%;
+    margin: $margin * 2 auto;
+    padding:$padding * 0.8 $padding * 1.4 ;
+    
+    .form--title{
+        text-align: center;
+       
+    }
+    .heading{
+        font-size: $font_size * 1.35;
+        margin-bottom: $margin * 0.5;
+        font-weight: 700;
+    }
+    .sub-heading{
+        font-size: 15px;
+    }
+    .form{
+        width:95%;
+        > * {
+            z-index: 1 ;
+        }
+        z-index: 1;
+        margin: auto;
+        min-height:40vh;
+        padding:$padding * 1.5;
+        border: 1px solid #ABABAB;
+        box-sizing: border-box;
+        border-radius: 7px;
+        margin-top:2em;
+        label{
+            display: block;
+            margin: $margin * 0.4 0;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        input{
+            border: none;
+            background: none;
+            outline: none;
+            width: 90%;
+            &:focus{
+                background: none;
+            }
+        }
+        .form--input-group{
+            padding:$padding * 0.2 $padding * 0.8;
+            height: 34.4px;
+            border: 1px solid #ABABAB;
+            @include flex($justify:space-between);
+            border-radius: 7px;
+            flex-wrap: nowrap;
+            z-index:1 !important;
+        }
+    }
+    .forgot-password{
+        margin: $margin * 0.7 0;
+        display: inline-block;
+        font-size: 0.9em;
+        color: $theme_color;
+    }
+    .form--btn{
+        border-radius: 7px;
+        width: 100%;
+        text-align: center;
+        height: 53px;
+        cursor: pointer;
+    }
+
+    .or{
+        @include or($multiplier:1.5)
+    }
+    .agree{
+        width: 100%;
+        margin: $margin * 1.5 0;
+        input{
+            width: 5%;
+            margin-top: $margin * 0.3 ;
+            margin-right:$margin * 0.5;
+        }
+        p.agree-text{
+            > * {
+             font-size: 14px;
+            }
+            width: 100%;
+            font-size: 14px;
+        }
+    }
+}
+.form--container.form-container-lg{
+    width: 55%;
+}
+.form--container.form-container-xlg{
+    width: 72%;
+}
+.genre--container{
+    min-height: 10vh;
+    padding: $padding * 0.4 0;
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+    .genre{
+        display: flex;
+        align-items: center;
+        margin:$margin * 0.2;
+        min-width:17%;
+        height: 35px;
+        border-radius: 7px;
+        padding: $padding * 0.5;
+        cursor: pointer;
+    }
+}
+@include md(){
+    .form--container,.form--container.form-container-lg {
+        width: 67%;
+    }
+}
+@include sm(){
+    .form--container ,
+    .form--container.form-container-lg ,
+    .form--container.form-container-xlg{
+        width: 97%;
+        .form{
+            padding:$padding * 0.7;
+        }
+    }
+
+}
