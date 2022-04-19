@@ -1,0 +1,442 @@
+@use "sass:math";
+
+.Hero{
+    @extend .container;
+    width: 100%;
+    background-image:url("/images/hero.svg") ;
+    background-size:cover ;
+    background-position: center;
+    min-height: 512px;
+    padding-top: $padding * 3;
+    .hero-heading{
+        >*{
+            font-family: 'Anja Eliane';
+            font-weight: 400;
+            font-size: 40px;
+            line-height: 48px;
+            letter-spacing: 0.05em;
+        }
+        font-family: 'Anja Eliane';
+        font-weight: 400;
+        font-size: 40px;
+        line-height: 48px;
+        letter-spacing: 0.05em;
+    }
+    .hero-text{
+        font-size: 18px;
+        width: 70%;
+        margin:$margin * 1.2 $margin $margin * 1.2 0;
+    }
+    .hero-content{
+        margin-top: $margin;
+        max-width: 42%;
+    }
+    .hero-btn{
+        &:hover{
+            transform: scale(1.05);
+        }
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding:$padding * 0.8 $padding;
+        cursor: pointer;
+        border: 1px solid #22323F;
+        border-radius: 7px;
+        background: unset;
+        transition: all ease 0.3s;
+    }
+}
+
+@include md{
+    .Hero{
+       .hero-content{
+           max-width: 80%;
+       }
+    }
+}
+@include sm{
+    .Hero{
+        text-align: center;
+       .hero-text{
+           margin:$margin * 1.2 auto;
+       }
+       .hero-content{
+           max-width: 95%;
+           margin:$margin * 1.2 auto;
+           
+       }
+       .hero-btn{
+           margin: auto;
+       }
+    }
+}
+.mask{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-image: url("/images/mask.svg");
+    background-size:cover;
+    cursor: pointer;
+}
+
+.mask-text-container{
+    cursor: pointer;
+    position: absolute;
+    top: 50px;
+    right: 1.2em;
+    width: 50%;
+    height: 100%;
+    padding: $padding 0;
+    padding-left: $padding * 1.5;
+    h1{
+        font-size: 24px;
+        font-weight: 400;
+    }
+    .see-all-text{
+        position: relative;
+        top: 15vh;
+        @include flex($justify:space-between);
+    }
+}
+
+.books-section {
+    position: relative;
+    .books-header{
+        border-left: 5px solid $theme_color;
+        padding: $padding * 0.35;
+        .view-all-link{
+            font-size: 15px;
+            margin-top: 0.5em;
+        }
+    }
+    .book{  
+    min-width:math.div(100,3) * 1% ;
+    border-radius: 7px;
+    padding: $padding * 0.35;
+    margin-right:$margin * 1.5;
+    max-height: 460px;
+    .book-info{
+        margin-top: 10px;
+     .book-title{
+       color: #1E1E1E;   
+       font-size: 16px;
+       margin-bottom: $margin * 0.35;
+     }
+     .book-author{
+         color: #8E8E8E;
+     }
+     .book-price{
+         font-size: larger;
+     }
+    }
+    }
+    .book-grid{
+       
+        width: 100%;
+        display: flex;
+        min-height: 460px;
+        padding-bottom: 20px;
+        overflow-x: hidden;
+        margin: auto;
+      
+    }
+    .prev,.next{
+        position: absolute;
+        top: 45%;
+        width: 50px;
+        height: 50px;
+        background: white;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+      }
+      .prev{
+          left: 30px;
+      }
+      .next{
+          right: 30px;
+      }
+    .book-img-container{
+        width: 100%;
+        height: 230px;
+        position: relative;
+        img{
+            width: 100%;
+            object-fit: cover;
+            height: 230px;
+            border-radius: 7px;
+        }
+        .wishlist{
+            bottom: -15px;
+            right: 10px;
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+            border: none;
+        }
+    }
+    @include md{
+      
+      .book{
+          min-width: 38%;
+          text-align: center;
+          .ratings-container{
+              justify-content: center;
+          }
+      }
+    }
+    @include sm{
+        .book-grid{
+            overflow-x: scroll;
+        }
+        .book{
+            min-width: 64%;
+            text-align: center;
+            .ratings-container{
+                justify-content: center;
+            }
+        }
+        .prev{
+            left: 30px;
+            display: none
+        }
+        .next{
+            right: 30px;
+            display: none
+        }
+      }
+
+}
+
+.about-hero{
+    width: 100%;
+    text-align: center;
+    @extend .container;
+    min-height: 383px;
+    background-image: url("/images/hero2.svg");
+    background-position: cover;
+    background-position: center;
+    p{
+        margin-top: $margin * 3;
+        margin-bottom: $margin * 0.5;
+    }
+    h1{
+        font-size: 24px;
+        font-weight: 400;
+    }
+}
+.get-to-know{
+    margin-top: $margin * 2.5;
+    min-height: 30vh;
+    h1{
+        padding-left:$padding * 0.6;
+        border-left: 3px solid $theme_color;
+    }
+}
+.about-col {
+    .img-container{
+        margin: auto;
+        text-align: center;
+        height: 35vh;
+        img{
+            object-fit: cover;
+            height: 35vh;
+        }
+    }
+    h1{
+        font-weight: 500;
+        line-height: 21px;
+        font-size: 18px;
+        margin: $margin * 0.5 auto;
+    }
+    p{
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+.about-get-started{
+    display: flex;
+    background-color: #AADFED;
+    min-height: 361px;
+    max-width: 100%;
+    .side-col{
+        background-image: url("/images/about/footerbg.svg");
+        background-size: cover;
+        width: 55%;
+        .content{
+            padding-left: $padding * 1.3;
+            border-left: 1px solid white;
+            color: white;
+            margin-left: 4em;
+            margin-top:$margin * 2.5;
+            right: 0;
+            h1{
+                font-size: 24px;
+                font-weight: 400;
+                line-height: 28px;
+            }
+            p{
+                font-size: 16px;
+                line-height: 25.6px;
+            }
+            .get-started-btn{
+                max-width: 306px;
+                height: 53px;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: $theme_color;
+                border-radius: 7px;
+            }
+        }
+    }
+    .first-col{
+        width: 45%;
+        h1{
+            font-size: 40px;
+            margin-top: $margin;
+            font-weight: 400;
+            width: 100%;
+            color: #2F455C;
+            padding-left: $padding * 0.2;
+        }
+    }
+}
+
+@include md{
+   .about-get-started{
+    display: block;
+    text-align: center;
+    .side-col{
+        width: 100%;
+        background: rgba(47, 69, 92, 0.9);
+        .content{
+            border-left: unset;
+            margin-left: 0;
+            width: 80%;
+            margin:0 auto;
+            .get-started-btn{
+                margin: auto;
+            }
+        }
+       }
+    .first-col{
+        width: 100%;
+     
+    }
+   }
+   
+
+}
+.faqs{
+    min-height: 75vh;
+    width: 87%;
+    margin: auto;
+    margin-top: 4vh;
+    .faq-header{
+        text-align: center;
+        h1{
+            font-size: 40px;
+            font-weight: 400;
+            margin-bottom: 0.4em;
+        }
+    }
+    .faq-questions{
+        margin-top: 8vh;
+        .question{
+            width:75%;
+            margin: auto;
+            border: 0.6px solid #888888;
+            box-sizing: border-box;
+            border-radius: 7px;
+            margin-bottom: 10px;
+            header{
+                @include flex;
+                padding: $padding;
+                .collapse-btn{
+                    cursor: pointer;
+                }
+            }
+            .answer{
+                max-height: 0;
+                overflow: hidden;
+                transition: all ease-in 0.2s;
+                .content{
+                    margin: $margin;
+                 
+                }
+            }
+        }
+    }
+}
+@include md{
+    .faqs{
+        width: 98%;
+        .faq-questions{
+            .question{
+                width: 85%;
+            }
+        }
+    }
+   
+}
+@include sm{
+    .faqs{
+        .faq-questions{
+            .question{
+                width: 95%;
+            }
+        }
+    }
+   
+}
+
+.events--hero-section{
+  position: relative;
+  width: 100%;
+  min-height:63vh;
+  background-image: url("/images/events/hero.svg");
+  background-position: center;
+  background-size: cover;
+  .hero-content{
+      position: absolute;
+      z-index: 10;
+      margin-top: $margin * 3;
+      .hero-heading{
+          > * {
+            font-size: 35px;
+            line-height: 37.5px;
+            font-weight: 400;
+          }
+          font-size: 32px;
+          line-height: 37.5px;
+          font-weight: 400;
+      }
+      .hero-text{
+          font-weight: 400;
+          line-height: 19.25px;
+      }
+  }
+  @include sm{
+      .hero-content{
+        text-align: center;
+      }
+  }
+  .hero--overlay{
+      position: absolute;
+      width: 100%;
+      top:0;
+      left: 0;
+      height: 100%;
+      z-index: 5;
+      img{
+          width: 100%;
+          object-fit: cover;
+          height: 63vh;
+      }
+  }
+}

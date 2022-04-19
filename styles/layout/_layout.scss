@@ -1,8 +1,9 @@
 .container{
-    padding:$padding*0.7 $padding * 2.5;
+    padding:$padding*0.7 $padding * 3;
 }
 .Layout{
  width: 100%;
+ position: relative;
 }
 .layout--header{
     width: 100%;
@@ -339,13 +340,53 @@
     }
   
 }
-
+.footer{
+    position: relative;
+    width: 100%;
+    @extend .container;
+    padding-top: 161px;
+    min-height: 415px;
+    background: #22323F;
+    .footer--row{
+      @include flex($justify:space-between,$align:flex-start);
+    }
+    .footer--row-link{
+        @include flex($justify:space-between,$align:flex-start);
+    }
+    .footer--links{
+        .heading{
+            font-size: 18px;
+            
+        }
+        ul{
+            padding-inline-start: 0;
+            li{
+                padding: $padding * 0.2 0;
+            }
+        }
+    }
+    .social--links{
+     li{
+       @include flex($justify:center);
+       width: 40px;
+       height: 40px;
+       background: white;
+       margin-right:$margin;
+       border-radius: 50%;
+       i{
+           color:#3F4C58;
+           font-size: $font_size * 1.2;
+       }
+     }
+  }
+ 
+}
 @include md{
     *{
         font-size: 14px;
     }
     .container{
-        padding:$padding*0.7 $padding * 0.5 ;
+        padding:$padding*0.7 $padding;
     }
     .header--actions{      
         .header--actions-link{
@@ -359,7 +400,7 @@
     }
     .dropdown{
         .dropdown--menu{
-            min-width: 300px;
+            min-width: 200px;
             top: 30px;
             right: 4%;
         }
@@ -378,6 +419,19 @@
             width: 90%;
         }
     }
+    .footer{
+        @extend .container;
+        padding-top:$padding * 8 ;
+        margin: auto;
+        .footer--row{
+          @include flex($display:block)
+        }
+        .brand--details{
+           text-align: center;
+           margin-top: $margin;
+        }
+    }
+
 }
 @include sm{
     .layout--header{
@@ -481,11 +535,25 @@
         display: block;
         transition: all ease-in 0.2s;
     }
-    .mobile--collapsible.hidden{
-      transform: translateY(-100%);
+    .footer{
+        .footer--row-link{
+          @include flex($display:block);
+          text-align: center;
+        }
+        .footer--links{
+            text-align: center;
+            margin-bottom: $margin * 3;
+        }
+        .brand--details{
+           text-align: center;
+           margin-top: $margin * 0.5;
+        }
     }
-    .mobile--collapsible.shown{
-        transform: translateY(0%);
-    }
+    .social--links{
+      justify-content: center;
+      margin: auto;
+      padding-left: $padding * 2;
+      text-align: center;
+     }
 }
 

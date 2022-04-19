@@ -51,7 +51,10 @@
             border-radius: 7px;
             flex-wrap: nowrap;
             z-index:1 !important;
+            resize: none;
+            outline: none;
         }
+
     }
     .forgot-password{
         margin: $margin * 0.7 0;
@@ -112,7 +115,7 @@
 }
 @include md(){
     .form--container,.form--container.form-container-lg {
-        width: 67%;
+        width: 78%;
     }
 }
 @include sm(){

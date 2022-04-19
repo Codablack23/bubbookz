@@ -61,17 +61,17 @@ export const Links:{
   },
   {
    name:"About Us",
-   url:"/",
+   url:"/about",
    dropdown:null
   },
   {
    name:"FAQs",
-   url:"/",
+   url:"/faqs",
    dropdown:null
   },
   {
    name:"Contact",
-   url:"/",
+   url:"/contact",
    dropdown:null
   },
  

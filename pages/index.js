@@ -1,11 +1,25 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.scss'
+import Hero from '../components/home/hero'
+import HomeAction from '../components/home/homeAction'
+import HomeLayout from '../components/layout/home/HomeLayout'
+import BooksSection from '../components//home/booksSection'
+import {books} from "../data/books"
+
 
 export default function Home() {
   return (
-   <div>
- 
-   </div>
+    <HomeLayout title={"Home"}>
+       <Hero/>
+       <HomeAction/>
+       <div className="row w-100">
+       <div className="col-9 col-md-12">
+             <BooksSection heading={"New Arrivals"} books={books.new_arrival}/>    
+             <BooksSection heading={"Popular"} books={books.popular}/>       
+             <BooksSection heading={"Recommended For You"} books={books.recommended}/>       
+         </div>
+         <div className="col-3 col-md-12">
+
+         </div>
+       </div>
+    </HomeLayout>
   )
 }

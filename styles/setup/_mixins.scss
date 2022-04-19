@@ -1,0 +1,26 @@
+@mixin  flex($flex_d:row,$align:center,$justify:space-between,$display:flex) {
+    display: $display;
+    align-items: $align;
+    // flex-direction: $flex_d;
+    justify-content: $justify;
+};
+
+@mixin md {
+    @media screen and (max-width:map-get($break_point,"md")) {
+        @content;
+    }
+};
+@mixin  sm {
+    @media screen and (max-width:map-get($break_point,"sm")) {
+        @content;
+    }
+};
+
+@mixin or($multiplier:0.5) {
+    margin:$margin * $multiplier 0;
+    @include flex;
+    hr{
+        width: 40%;
+       color:lightgray;
+    }
+}
