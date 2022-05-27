@@ -49,7 +49,7 @@ export default function FAQS(){
                       <div className="question" key={faq.id}>
                       <header>
                           <p>{faq.question}</p>
-                          <span className="collapse-btn" onClick={()=>showAnswer(faq.id)} >
+                          <span className="collapse-btn pointer-cursor" onClick={()=>showAnswer(faq.id)} >
                               <i className="bi bi-plus-lg"></i>
                           </span>
                       </header>

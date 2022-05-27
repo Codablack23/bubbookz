@@ -1,4 +1,23 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+$theme_color:#1DCEFD;
+
+$colors:(
+    "primary":$theme_color,
+    "primary-light":"#4FD3F7",
+    "primary-lighter":"#80D9F0",
+    "primary-very-light":"#B3DFEB",
+    "green":"#25D781",
+    "red":"#F26464",
+    "orange":"#FFB648",
+    "blue":"#3751FF",
+    "sky-blue":" "#00A7F2,
+    "choco":#1E1E1E,
+    "choco-light":#5C5C5C,
+    "grey":#8E8E8E,
+   
+
+);
+
 
 $padding :1.2em;
 $margin :1.2em;
@@ -10,20 +29,20 @@ $break_point:(
     "md":890px,
     "sm":480px
 );
+
 $justify:(center,space-between,flex-end,space-around);
 $align_items:(center,flex-end,flex-start);
-$theme_color:#1DCEFD;
+$wrap:(wrap,nowrap);
+
 $font_size:18px;
 $fonts:(
-    (
+    "1":(
     "family":"Louis George Cafe",
     "src":"/fonts/Louis_George/Louis George Cafe.ttf"
     )
 );
 
-// @each $var in $fonts {
-//  
-// }
+
 @font-face {
     font-family:"Louis George Cafe";
     src: url("/fonts/Louis_George/Louis George Cafe.ttf");

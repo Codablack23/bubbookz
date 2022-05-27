@@ -2,7 +2,7 @@ import FormContainer from  '../../components/layout/user/forms'
 import Button from  '../../components/layout/user/buttons'
 import styled from 'styled-components'
 import Link from 'next/link'
-import SelectDropDown from '../../components/layout/user/selectDropDown'
+import SelectDropDown from '../../components/widgets/user/selectDropDown'
 import { useState } from 'react'
 
 const schools =[

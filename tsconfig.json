@@ -1,5 +1,12 @@
 {
   "compilerOptions": {
+    "baseUrl":".",
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./*"],
+      "~~/*": ["./*"],
+      "@@/*": ["./*"]
+  },
     "target": "es5",
     "lib": [
       "dom",
@@ -23,7 +30,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "components/layout/user/buttons.tsx"  ],
+, "components/widgets/buttons.tsx"  ],
   "exclude": [
     "node_modules"
   ]

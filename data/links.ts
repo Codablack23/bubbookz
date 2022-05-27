@@ -8,6 +8,10 @@ export const Links:{
    url:"/",
    dropdown:[
       {
+       url:"/books",
+        text:"All Books"
+      },
+      {
           url:"/",
           text:"Accounting"
       },
@@ -51,12 +55,12 @@ export const Links:{
   },
   {
    name:"Community",
-   url:"/",
+   url:"/community",
    dropdown:null
   },
   {
    name:"Events",
-   url:"/",
+   url:"/events",
    dropdown:null
   },
   {

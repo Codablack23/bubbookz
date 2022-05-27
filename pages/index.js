@@ -1,7 +1,7 @@
-import Hero from '../components/home/hero'
-import HomeAction from '../components/home/homeAction'
-import HomeLayout from '../components/layout/home/HomeLayout'
-import BooksSection from '../components//home/booksSection'
+import Hero from '~/components/widgets/home/hero'
+import HomeAction from '~/components/widgets/home/homeAction'
+import HomeLayout from '~/components/layout/home/HomeLayout'
+import BooksSection from '~/components/widgets/home/booksSection'
 import {books} from "../data/books"
 
 

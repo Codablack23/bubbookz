@@ -1,6 +1,3 @@
-.container{
-    padding:$padding*0.7 $padding * 3;
-}
 .Layout{
  width: 100%;
  position: relative;
@@ -557,3 +554,41 @@
      }
 }
 
+.news-letter{
+    width: 100%;
+    @extend .container;
+    background-image: url("/images/footer_img.svg");
+    background-size: cover;
+    min-height: 30vh;
+    h1{
+        color: #2F455C;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 26px;
+        width: 55%;
+        margin: 1em auto;
+    }
+    .news-letter-form{
+        display: flex;
+        justify-content: space-between;
+        margin: 1em auto;
+        input{
+          outline: none;
+          width: 80%;
+          padding: $padding * 0.3;
+          border: none;
+          background: white;
+          border-radius: 7px;
+          height: 44px;
+        }
+        button{
+            width: 19%;
+            min-height: 44px;
+            background: $theme_color;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+    }
+}

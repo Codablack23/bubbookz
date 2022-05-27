@@ -30,7 +30,12 @@ color: unset;
 text-decoration: none;
 }
 
-
+.container{
+    padding:$padding*0.7 $padding * 3;
+}
+.container-small{
+    padding:$padding*0.7 $padding * 1.5;
+}
 .card{
     box-shadow: 0px 10px 20px rgba(214, 214, 214, 0.4);
 }
@@ -43,20 +48,39 @@ text-decoration: none;
         outline: none;
     }
 }
-
+.bg-fb{
+    background-color:#3A559F;
+    color: white;
+}
+.bg-twitter{
+    background-color:#50ABF1;
+    color: white; 
+}
+.bg-whatsapp{
+    background-color:#1BD741;
+    color: white;
+}
 .flex{
     display: flex;
+}
+.flex.flex-wrap{
+    flex-wrap: wrap;
 }
 @each $v in $justify{
     .flex.justify-content-#{$v}{
         justify-content: $v;
     }
   };
-  @each $k,$v in $align_items{
+  @each $v in $align_items{
     .flex.align-items-#{$v}{
-          justify-content: $v;
-      }
-}
+     align-items: $v;
+   }
+  }
+  @each $v in $wrap{
+    .flex.flex-#{$v}{
+     flex-wrap: $v;
+   }
+  }
 .show{
     display: block !important;
 }
@@ -67,7 +91,9 @@ text-decoration: none;
 .or{
  @include or($multiplier:0.8)
 }
-
+.bg-white{
+    background: white;
+}
 .bg-theme{
     background-color: $theme_color;
     color: white;
@@ -79,10 +105,21 @@ text-decoration: none;
     text-align: center;
 }
 .text-white{
-    color: white;
+    color: #ffff;
+
+}
+.text-accent-1{
+    color: #2f455c;
+}
+.bg-accent-1{
+    background-color: #2f455c;
 }
 .text-star{
     color: #FFC700;
+}
+.bg-star{
+    background: #FFC700;
+    color: #fff;
 }
 .font-l{
     font-family:"Louis George Café", sans-serif;
@@ -92,6 +129,9 @@ text-decoration: none;
 }
 .fw-reg{
   font-weight: 400;
+}
+.fw-bold{
+    font-weight: 600;
 }
 // width and height classes
 .row{
@@ -124,8 +164,14 @@ text-decoration: none;
     width: 100%;
     object-fit: cover;
 }
-@for $i from 1 through 10 {
-   $value:$i * 10;
+.w-28{
+    width: 28%;
+}
+.d-block{
+    display: block;
+}
+@for $i from 1 through 20 {
+   $value:$i * 5;
    $percent:$value * 1%;
    $vh:$value * 1vh;
    .w-#{$value}{
@@ -149,11 +195,17 @@ text-decoration: none;
 }
 
 @include md{
+    .text-md-center{
+        text-align: center;
+    }
     .d-md-block{
         display: block;
     }
-    @for $i from 1 through 10 {
-        $value:$i * 10;
+    .m-md-auto{
+        margin: auto;
+    }
+    @for $i from 1 through 20 {
+        $value:$i * 5;
         $percent:$value * 1%;
         $vh:$value * 1vh;
         .w-md-#{$value}{
@@ -178,8 +230,17 @@ text-decoration: none;
 }
 
 @include sm{
-    @for $i from 1 through 10 {
-        $value:$i * 10;
+    .text-sm-center{
+        text-align: center;
+    }
+    .d-sm-block{
+        display: block;
+    }
+    .m-sm-auto{
+        margin: auto;
+    }
+    @for $i from 1 through 20 {
+        $value:$i * 5;
         $percent:$value * 1%;
         $vh:$value * 1vh;
         .w-sm-#{$value}{
@@ -202,7 +263,140 @@ text-decoration: none;
         }
      }
 }
+.small-20{
+    font-size: 20px;
+}
+.small-18{
+    font-size: 18px;
+}
+.small-16{
+   font-size: 16px;
+}
+.small-24{
+    font-size: 24px;
+}
+.small-26{
+    font-size: 26px;
+}
+.small-28{
+    font-size: 28px;
+}
+.small-30{
+    font-size: 30px;
+}
+.small-14{
+    font-size: 14px;
+}
+.btn-small{
+    border:none;
+    margin:1em auto,;
+    border-radius:7px;
+    padding:0.5em;
+    cursor:pointer;
+}
+.text-disabled{
+    color: #8E8E8E;
+}
+.curved{
+    border-radius: 7px;
+}
+.btn{
+    border:none;
+    margin:1em auto,;
+    border-radius:7px;
+    padding:0.8em;
+    cursor:pointer;
+}
+.input-label{
+    display: block;
+    color: #1E1E1E;
+    line-height: 18.75px;
+    margin: $margin * 0.5 0;
+    font-size: 16px;
+}
+.input{
+    border: 1px solid #8E8E8E;
+    padding: $padding * 0.4;
+    outline: none;
+    resize: none;
+}
+.input-group{
+    display: flex;
+    min-height: 35px;
+    border: 0.5px solid #888888;
+    border-radius: 7px;
+    .side{
+        outline: none;
+        border: none;
+        border-radius: 0px;
+    }
+    .side.side-left{
+        margin-left: 10px;
+        border-right:  0.5px solid #888888;
+    }
+    .side.side-right{
+        margin-right: 10px;
+        border-left:  0.5px solid #888888;
+    }
+    input{
 
-.small-text{
-        font-size: 15px;
+        border: none;
+        background: none;
+        outline: none;
+        padding: $padding * 0.3;
+    }
+}
+
+.pointer-cursor{
+    cursor: pointer;
+}
+
+.m-auto{
+    margin: auto;
+}
+.br{
+    border-radius: 7px;
+}
+.tab-menu{
+    margin-top: $margin;
+    margin-bottom: $margin;
+    min-height: 70vh;
+    width: 100%;
+    hr{
+        margin-top: -2px;
+        opacity: 0.3;
+    }
+    .tabs{
+        display: flex;
+        align-items: center;
+    }
+
+    .tab-item{
+        min-width: 20%;
+        @extend .text-disabled;
+        margin-right: 30px;
+        text-align: center;
+        transition: all ease-in 0.2s;
+        padding-bottom:$padding * 0.35;
+        text-transform: uppercase;
+        @extend .small-16;
+        cursor: pointer;
+    }
+    .tab-item.active{
+        @extend .text-theme;
+     
+        border-bottom: 3px solid $theme_color
+    }
+    .tab-content{
+       padding: $padding $padding * 0.5;
+    }
+}
+.progress-bar{
+    background: #EEEFF1;
+    height: 8px;
+    border-radius: 7px;
+    .progress{
+        border-radius: 7px 0px 0px 7px;
+        height: 8px;
+    }
 }
