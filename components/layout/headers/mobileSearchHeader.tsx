@@ -29,11 +29,11 @@ export default function SearchHeaderMobile(){
                 <option value="">All Categories</option>
             </select>
         </div>
-        <Button backgroundColor={"#1DCEFD"} borderRadius="7px" height="50px" width="5em">
+        <button className='btn bg-theme'>
          <span>
              <img src="/icons/search-white.svg" alt="" />
          </span>
-        </Button>
+        </button>
     </form>
     )
 }

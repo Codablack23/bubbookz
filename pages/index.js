@@ -10,6 +10,7 @@ export default function Home() {
     <HomeLayout title={"Home"}>
        <Hero/>
        <HomeAction/>
+       <div className="container">
        <div className="row w-100">
        <div className="col-9 col-md-12">
              <BooksSection heading={"New Arrivals"} books={books.new_arrival}/>    
@@ -19,6 +20,7 @@ export default function Home() {
          <div className="col-3 col-md-12">
 
          </div>
+       </div>
        </div>
     </HomeLayout>
   )

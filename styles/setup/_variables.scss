@@ -33,6 +33,7 @@ $break_point:(
 $justify:(center,space-between,flex-end,space-around);
 $align_items:(center,flex-end,flex-start);
 $wrap:(wrap,nowrap);
+$flexDirection:(row,column,row-reverse,column-reverse);
 
 $font_size:18px;
 $fonts:(

@@ -12,10 +12,10 @@ function Scroll(x,id){
   const grid = document.querySelector(`.book-grid-${id}`)
   grid.scrollBy(x,0)
 }
-export default function BooksSection({heading,children,books}){
+export default function BooksSection({heading,books}){
     return(
-      <section className="books-section container">
-          <header className="books-header flex justify-content-space-between align-items-center">
+      <section className="books-section">
+          <header className="books-header flex justify-content-space-between align-items-center" style={{marginBottom:"1.2em"}}>
             <p>{heading}</p>
             <Link href={"/"}>
              <a className="view-all-link text-theme">View all </a>

@@ -1355,3 +1355,131 @@
      border-top: 1px solid #C4C4C4;
  }
 }
+.table-container{
+    &::-webkit-scrollbar{
+        height: 7px;
+        border-radius: 7px;
+    }
+    &::-webkit-scrollbar-thumb{
+        height: 7px;
+        background:#22323F;
+        border-radius: 7px;
+        cursor: pointer;
+    }
+    max-width: 100%;
+    overflow-x: auto;
+}
+.cart-table{
+   
+    .quantity-widget{
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        .quantity{
+            margin:0 10px;
+        }
+      
+        button{
+            &:hover{
+                background: #2F455C;
+                color: #fff;
+            }
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: none;
+            margin-right: 10px;
+            cursor: pointer;
+            transition: all ease 0.3s;
+        }
+        button.decrease{
+            margin-left: 10px;
+        }
+    }
+    overflow-x: scroll;
+    border-spacing: 0px;
+   .table-head{
+        background:#22323F;
+        height: 50px;
+        border-radius: 7px;
+        th{
+            color: #fff;
+            min-width: 150px;
+        }
+    }
+    td{
+      padding: 0.4em;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      .cover{
+          width: 70%;
+          height: 20vh;
+          border-radius: 7px;
+          img{
+              width: 100%;
+              object-fit: cover;
+              height: 20vh;
+              border-radius: 7px;
+          }
+      }
+    }
+    .cart-item{
+        .delete-btn,
+        .wishlist-btn{
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            background: none;
+            width: 35px;
+            height: 35px;
+            @include flex($align:center,$justify:center);
+            border-radius: 50%;
+        }
+        .delete-btn{
+            color: #F44336;
+        }
+    }
+}
+
+.checkout-detail{
+    border: 1px solid #C4C4C4;
+    padding: $padding $padding * 1.5;
+    @extend .br;
+    margin:$margin 0;
+
+}
+.delivery-method{
+    label.delivery-method-checkbox{
+        @include flex($align:center,$justify:center);
+        min-width: 18px;
+        min-height: 18px;
+        border-radius: 50%;
+        border: 1px solid #C4C4C4;
+        padding: 4px;
+        cursor: pointer;
+        div{
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+        }
+    }
+    input[type=checkbox]{
+     opacity: 0;
+    }
+}
+.checkout-page{
+    .all-orders{
+        &::-webkit-scrollbar{
+            width: 5px;
+        }
+        &::-webkit-scrollbar-thumb{
+            width: 5px;
+            @extend .bg-accent-1;
+            border-radius: 7px;
+        }
+        max-height: 65vh;
+        overflow-y: auto;
+        padding-right: 1em;
+    }
+}

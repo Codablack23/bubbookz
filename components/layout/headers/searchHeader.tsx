@@ -51,12 +51,14 @@ import ActionHeader from './actionHeader'
             </form>
             <div className="actions-mobile-container">
             <ActionHeader className={"header--actions-mobile"}/>
-               <Button backgroundColor="unset" borderRadius={"0"} height={"auto"} width={"auto"}  >
+              <Link href={'/user/cart'}>
+              <a>
                  <span className='cart--icon'>
                      <img src="/icons/cart.svg" alt="" />
                  </span>
                  <span className="cart--text hide-lg">MY CART</span> 
-               </Button>
+               </a>
+              </Link>
            
             </div>
          </div>

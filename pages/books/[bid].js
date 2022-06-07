@@ -22,7 +22,7 @@ export default function BookPage(){
     return(
         <HomeLayout title={"1"}>
             <div className="container book-page">
-              <div className="book-page-header w-90 m-auto flex flex-wrap align-items-flex-start justify-content-space-between">
+              <div className="book-page-header w-100 m-auto flex flex-wrap align-items-flex-start justify-content-space-between">
                   <div className="book-details w-75 w-md-100">
                      <div className="book-cover">
                          <img src="/images/book2.svg" alt="" />
@@ -54,7 +54,7 @@ export default function BookPage(){
                      
                   </div>
               </div>
-               <div className="share-book w-90 m-auto">
+               <div className="share-book w-100 m-auto">
                       <p className="text-disabled small-16">Share with Friends</p><br />
                       <div className="flex align-items-center w-70">
                         <Link href={"/"}>
@@ -75,7 +75,7 @@ export default function BookPage(){
                       </div>
                </div>
               <br />
-                <div className="product-desc w-85 w-md-95 m-auto">
+                <div className="product-desc w-100 m-auto">
                 <Tab/>
                 </div><br />
               <BooksSection heading={"Related"} books={books.new_arrival}/>    

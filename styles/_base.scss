@@ -70,17 +70,22 @@ text-decoration: none;
     .flex.justify-content-#{$v}{
         justify-content: $v;
     }
-  };
-  @each $v in $align_items{
-    .flex.align-items-#{$v}{
-     align-items: $v;
-   }
+ };
+@each $v in $align_items{
+.flex.align-items-#{$v}{
+    align-items: $v;
+}
   }
   @each $v in $wrap{
     .flex.flex-#{$v}{
      flex-wrap: $v;
    }
-  }
+}
+@each $v in $flexDirection{
+    .flex.flex-#{$v}{
+     flex-direction: $v;
+   }
+}
 .show{
     display: block !important;
 }
@@ -400,3 +405,10 @@ text-decoration: none;
         height: 8px;
     }
 }
+.bg-light-grey{
+    background: #FAFAFA;
+}
+hr{
+    opacity: 0.2;
+}
+
