@@ -22,7 +22,7 @@ export default function SelectAccountType(){
          <p style={style.info}>Student type allows you to have a  bookshelf according to your course choice of study</p>
          <p style={style.info}>Non - Student type is a general account. It does not have the bookshelf option.</p>
 
-         <Button {...BtnProps.continue}>Continue</Button>
+         <button className="btn bg-theme w-100 bg-text-white">Continue</button>
        </form>
     
    </FormContainer>
