@@ -141,26 +141,49 @@ text-decoration: none;
 // width and height classes
 .row{
     width: 100%;
-    display: flex;
+    display: grid;
     flex-wrap: wrap;
+    gap: 10px;
+    grid-template-columns: repeat(12,1fr);
     @for $i from 1 through 12{
       .col-#{$i}{
-          width: math.div($i,12) * 100%;
+          grid-column: span $i;
           padding:$padding * 0.25 $padding * 0.5;
       }
       @include md{
         .col-md-#{$i}{
-            width: math.div($i,12) * 100%;
+            grid-column: span $i;
             padding:$padding * 0.25 $padding * 0.5;
         }
       }
       @include sm{
         .col-sm-#{$i}{
-            width: math.div($i,12) * 100%;
+            grid-column: span $i;
             padding:$padding * 0.25 $padding * 0.5;
         }
       }
     }
+}
+.bub-grid{
+    width: 100%;
+    display:grid;
+    grid-template-columns: repeat(12,1fr);
+    gap: 10px;
+    @for $i from 1 through 12{
+        .grid-col-#{$i}{
+            grid-column: span $i;
+        }
+        @include md{
+          .grid-col-md-#{$i}{
+            grid-column: span $i;
+          }
+        }
+        @include sm{
+          .grid-col-sm-#{$i}{
+            grid-column: span $i;
+          }
+        }
+      }
 }
 .p-relative{
   position: relative;
@@ -268,30 +291,23 @@ text-decoration: none;
         }
      }
 }
-.small-20{
-    font-size: 20px;
+
+@for $i from 14 through 40{
+    .small-#{$i}{
+        font-size: $i * 1px;
+    }
+    @include md{
+     .small-md-#{$i}{
+           font-size: $i * 1px;
+     }  
+    }
+    @include sm{
+     .small-sm-#{$i}{
+        font-size: $i * 1px;
+     }
+    }
 }
-.small-18{
-    font-size: 18px;
-}
-.small-16{
-   font-size: 16px;
-}
-.small-24{
-    font-size: 24px;
-}
-.small-26{
-    font-size: 26px;
-}
-.small-28{
-    font-size: 28px;
-}
-.small-30{
-    font-size: 30px;
-}
-.small-14{
-    font-size: 14px;
-}
+
 .btn-small{
     border:none;
     margin:1em auto,;

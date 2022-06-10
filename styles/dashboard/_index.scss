@@ -1,0 +1,260 @@
+.bub-dashboard-layout{
+    max-width:1096px;
+    margin:auto;
+    padding:0 1em;
+}
+.bub-dashboard-header{
+    .bub-dashboard-banner{
+        padding: $padding;
+        border-radius: 0 0 10px 10px;
+        height: 200px;
+    }
+    .bub-account-info{
+        margin:-80px auto 0 auto;
+        min-height: 300px;
+    }
+    .bub-account-cover-container{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: -50px;
+        .bub-account-cover{
+            width: 150px;
+            height: 150px;
+           
+            img{
+                object-fit: cover;
+                width: 100%;
+                height:150px;
+            }
+        }
+        @include md{
+            .bub-account-cover{
+                width: 100px;
+                height: 100px;
+               
+                img{
+                    height:100px;
+                }
+            } 
+        }
+    }
+}
+.bub-dashboard-nav{
+    margin-top: $margin * 2.5;
+    border-bottom:1px solid #eeee;
+    max-width: 1096px;
+    display: flex;
+    overflow: auto;
+    &::-webkit-scrollbar{
+        height: 5px;
+    }
+    &::-webkit-scrollbar-thumb{
+        height: 5px;
+        background-color: #eeee;
+        border-radius: 7px;
+    }
+    .bub-dashboard-link{
+        display: inline-block;
+        padding:0.8em 0;
+        margin-right: $margin * 0.8;
+        min-width: 80px;
+    }
+    .bub-dashboard-link.active{
+        color: $theme_color;
+        border-bottom:1px solid $theme_color;
+    }
+   
+}
+.bub__dashboard-content{
+    padding: $padding * 1.5 0;
+    position: relative;
+}
+.bub__dashboard-page-content{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.bub__dashboard-level-menu{
+    width: 200px;
+    background: white;
+    .bub__dashboard-level{
+        padding: $padding * 0.6;
+        text-align: center;
+        margin: 0.1em auto;
+        width: 95%;
+        border-radius: 7px;
+        background-color: #eeee;
+        cursor: pointer;
+
+      
+    }
+    transition: max-width ease 0.4s;
+    @include md{
+        width: 40%;
+        position: absolute;
+        max-width: 0;
+        overflow: hidden;
+        left: 0;
+        height: 100%;
+        background: white;
+    }
+
+}
+.bub__dashboard-level-dropdown-menu{
+    margin: 0.4em 0;
+    padding-left: 0;
+    padding-block-start: 0;
+    border-radius: 7px;
+    width: 100%;
+    list-style: none;
+    background-color: white;
+    @extend .card;
+    max-height: 0;
+    overflow: hidden;
+    transition: all ease 0.7s;
+    li{
+        padding: $padding;
+        border-top: 1px solid #eee;
+        cursor: pointer;
+        &:first-child{
+            border-top: none;
+        }
+    }
+}
+
+.bub__book-shelf-wrapper{
+    width: 76%;
+    padding: 0.5em;
+    max-height: 600px;
+    overflow-y: auto;
+    &::-webkit-scrollbar{
+        width: 5px;
+        margin-left: 1em;
+    }
+    &::-webkit-scrollbar-thumb{
+        width: 3px;
+        border-radius: 7px;
+        background-color: #eee;
+    }
+    @include md{
+        width: 96%;
+        margin: auto;
+    }    
+}
+.bub__shelf-book{
+    padding:1em 0 ;
+    min-height: 220px;
+    display: flex;
+    border-radius: 7px;
+    align-items: center;
+    justify-content: space-between;
+    .bub__book-index{
+        width: 25px;
+        height: 25px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items:center;
+        justify-content: center;
+        @extend .text-accent-1;
+        background-color: #fff;
+        font-weight: 600;
+    }
+    .bub__book-cover{
+        height: 250px;
+        img{
+            width: 100%;
+            object-fit: cover;
+            height: 250px;
+        }
+    }
+    .bub__book-desc{
+        margin-left: 10px;
+        .bub__book-text-description{
+            font-size: 16px;
+        }
+    }
+    .bub__book-action{
+        margin-right: 10px;
+    }
+    .bub__book-action-mobile{
+        display: none;
+    }  
+    @include md{
+        display: block;
+        margin: auto;
+        .bub__book-index{
+            margin-top: -0.7em;
+        }
+        .bub__book-desc{
+         margin-left: 0px;
+         padding: 1em;
+         .bub__book-text-description{
+            font-size: 14px;
+         }
+        }
+        .bub__book-cover{
+            width: 150px;
+            height: 150px;
+            margin: auto;
+            img{
+                width: 100%;
+                object-fit: cover;
+                height: 150px;
+            }
+        }
+        .bub__book-action{
+            display: none;
+        }
+        .bub__book-action-mobile{
+            display: flex;
+            width: 100%;
+            align-items: center;
+        }
+    }     
+}
+.bub__open-level-btn{
+    display: none;
+    cursor: pointer;
+    button{
+        cursor: pointer;
+        display: flex;
+        height: 50px;
+        border: 1px solid $theme_color;
+        color: $theme_color;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        width: 100%;
+        border-radius: 7px;
+    }
+    @include md{
+        display: block;
+    }
+}
+.bub__level-mobile{
+    display: none;
+    margin: 1.2em auto;
+    select{
+        outline: none;
+        cursor: pointer;
+        width: 30%;
+        border: 1px solid #eee;
+        height: 35px;
+        border-radius: 7px;
+        option{
+            @extend .bg-accent-1;
+            color: white;
+        }
+    }
+    @include md{
+        display: flex;
+        justify-content: space-around;
+    }
+    @include sm{
+        select{
+            width: 41%;
+        }
+    }
+}
