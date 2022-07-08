@@ -2,6 +2,7 @@ import { useState } from 'react'
 import BooksLayout from '~/components/layout/Books/bookLayout'
 import RecommendedBook from '~/components/widgets/books/RecBooks'
 import Book from '~/components/widgets/books/Book'
+import SortWidget from "~/components/elements/filter";
 
 export default function Books(){
     const [view,setView] = useState(true)
@@ -25,7 +26,12 @@ export default function Books(){
                         </button>
                     </div>
                 </header>
-                <div className="BookList">
+                <div className="flex justify-content-flex-end">
+                   <div className='w-20 w-md-35 w-sm-45 bub-mb-3'>
+                   <SortWidget/>
+                   </div>
+                </div>
+                <div className="BookList bub-grid">
                   <Book view={view}/>
                   <Book view={view}/>
                   <Book view={view}/>

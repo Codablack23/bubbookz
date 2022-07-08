@@ -1,63 +1,16 @@
 import { useState } from "react";
 import Button from "../../layout/user/buttons";
 import FormContainer from "../../layout/user/forms";
+import SelectBookCategory from './selectBookCategory'
 
 export default function SelectBookGenre(){
-  const [categories] = useState([
-    'Accounting','Fiction','Thriller','History','Philosophy',
-    'Action and adventure','sci-fi','Mystery','Science',
-    'Religion, spirituality and age','Sports and Leisure',
-  
-  ])
-  const [selected,setSelected] = useState([])
- const [limit,setLimit] = useState(8)
-
-  function select(genre){
-    if(selected.length < limit){
-      setSelected(prev=>[...prev,genre])
-    }  
-  }
-  function removeSelection(genre){
-    setSelected(prev=>{
-      return [...prev.filter(s=>s !== genre)]
-    })
-  }
   return(
     <FormContainer title={"Select Book Genre"} extraClass={'form-container-xlg'}>
       <div className="form--title">
         <h1 className="heading">Select your favourite book genres</h1>
         <p className='sub-heading'>We use your favourite genres to make better book recommendations for you</p>
       </div>
-      <div style={style.genres}>
-        <p style={style.limit}>{limit - selected.length} Selection(s) Remaining</p>
-      <div className="genre--container">
-          {categories.length>0?
-            categories.map(cat=>(             
-            selected.includes(cat)?
-            (
-            <span
-              key={cat}
-              className="genre"
-              style={style.added}
-              onClick={()=>{removeSelection(cat)}}
-              >
-             {cat}
-            </span>
-            )
-            :(
-            <span
-              key={cat}
-              className="genre" 
-              style={style.notAdded}
-              onClick={()=>{select(cat)}}
-              >
-              {cat}
-            </span>
-            )
-            ))      
-          :null}
-        </div>
-      </div>
+          <SelectBookCategory>
       <div style={style.notice}>
         <p style={style.p}>You can edit this anytime in your User preference in account settings </p>
         <Button {...BtnProps.continue}>Continue</Button>
@@ -90,18 +43,15 @@ const style={
   limit:{
     fontSize:'14px',
     color:'#8E8E8E',
-    textAlign:'right',
     margin:'0.1em 0.3em'
   },
   notice:{
     width:'65%',
     margin:"2em auto",
-    textAlign:'center'
   },
   p:{
     fontSize:'14px',
     color:'#8E8E8E',
-    textAlign:'center',
   }
 
 }

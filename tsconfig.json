@@ -5,7 +5,8 @@
       "~/*": ["./*"],
       "@/*": ["./*"],
       "~~/*": ["./*"],
-      "@@/*": ["./*"]
+      "@@/*": ["./*"],
+      
   },
     "target": "es5",
     "lib": [
@@ -30,7 +31,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "components/widgets/buttons.tsx"  ],
+, "components/widgets/buttons.tsx", "components/layout/user/buttons.js"  ],
   "exclude": [
     "node_modules"
   ]

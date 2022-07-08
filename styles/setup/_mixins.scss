@@ -24,3 +24,10 @@
        color:lightgray;
     }
 }
+
+@mixin  btn {
+    border:none;
+    margin:0.7em 0.2em;
+    border-radius:7px;
+    cursor: pointer;
+}

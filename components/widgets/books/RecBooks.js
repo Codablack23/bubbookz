@@ -1,15 +1,16 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 export default function RecommendedBooks(){
     return(
-        <div className="recommended-book flex ">
-        <div className="img-container">
-            <img src="/images/book1.svg" />
+        <div className="recommended-book bub-grid bub-mb-sm-2">
+        <div className="img-container grid-col-4  grid-col-sm-12 bub-mb-sm-2">
+            <Image src="/images/book1.svg" height={"85vh"} width={"100%"} alt="book" layout='responsive'/>
         </div>
-        <div className="book-details w-70">
+        <div className="book-details grid-col-8 grid-col-sm-12">
             <div className='flex align-items-center justify-content-space-between'>
                <div>
-                   <p className="small-16">Principles Of General Chemistry</p>
+                   <p className="fw-bold">Principles Of General Chemistry</p>
                    <p className="text-disabled small-14">By Mariana P.Diego</p>
                </div>
               <p

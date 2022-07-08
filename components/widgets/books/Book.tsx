@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export default function Book({view}){
   function getRatings(end,star){
     return new Array(end).fill("").map(el=>
@@ -7,12 +9,12 @@ export default function Book({view}){
     )
   }
     return(
-        <div className={`Book ${view?"grid":"list"}`}>
+        <div className={`Book ${view?"grid grid-col-4 grid-col-md-6":"list grid-col-12"}`}>
           <div className="book-cover">
-            <img src="/images/book1.svg" />
+            <Image src="/images/book1.svg" width={"100%"} height={"100%"} layout="responsive" alt="book"/>
           </div>
-          <div className="book-info w-70">
-            <p className="small-16 fw-reg">Principles Of General Chemistry</p>
+          <div className="book-info w-70 w-sm-100">
+            <p className="fw-bold fw-reg">Principles Of General Chemistry</p>
             <p className="small-14 text-disabled">By Mariano Diego</p><br />
               <div className="book-ratings">
               {getRatings(4,"bi-star-fill" )}

@@ -2,6 +2,7 @@ import FormContainer from  '../../components/layout/user/forms'
 import Button from  '../../components/layout/user/buttons'
 import styled from 'styled-components'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Login(){
     return(
@@ -25,7 +26,7 @@ export default function Login(){
               </span>
             </div>
 
-            <Link href={"/user/forgot_password"}>
+            <Link href={"/user/forgot-password"}>
                 <a className="forgot-password">Forgot Password ?</a>
             </Link>
 
@@ -40,13 +41,13 @@ export default function Login(){
            <Button  {...BtnProps.googleLogin}>
              <div className='flex justify-content-center' >
              <span style={style.googleLogo}>
-                <img src="/icons/Google.svg" alt="" />
+                <Image src="/icons/Google.svg" alt="google-icon" height={"30px"} width={"30px"} />
               </span>
               Login with Google
              </div>
            </Button>
 
-           <span style={style.signUpLink} >
+           <span className='text-center' style={style.signUpLink} >
              Dont Have an Account? 
              <Link href={'/user/signup'}>
                <a style={style.a}> Sign Up</a>
@@ -68,7 +69,6 @@ const style = {
   signUpLink:{
     display:'block',
     margin:"2em auto",
-    textAlign:'center',
     fontSize:'15px',
     color:"#ABABAB"
   },

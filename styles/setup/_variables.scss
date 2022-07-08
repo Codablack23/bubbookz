@@ -1,21 +1,63 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
 $theme_color:#1DCEFD;
 
+$casing:(
+    "upper":uppercase,
+    "lower":lowercase,
+    "capital":capitalize
+);
 $colors:(
     "primary":$theme_color,
-    "primary-light":"#4FD3F7",
-    "primary-lighter":"#80D9F0",
-    "primary-very-light":"#B3DFEB",
-    "green":"#25D781",
-    "red":"#F26464",
-    "orange":"#FFB648",
-    "blue":"#3751FF",
-    "sky-blue":" "#00A7F2,
+    "primary-light":#4FD3F7,
+    "primary-lighter":#80D9F0,
+    "primary-very-light":#B3DFEB,
+    "green":#25D781,
+    "red":#F26464,
+    "orange":#FFB648,
+    "blue":#3751FF,
+    "sky-blue":#00A7F2,
     "choco":#1E1E1E,
     "choco-light":#5C5C5C,
+    "dark-grey":#B8BDC3,
     "grey":#8E8E8E,
+    "accent":#2f455c,
+    "light-grey":#DAE3E6C3,
+    "dark":#1E1E1E,
+     black:black
    
+);
 
+$utils:(
+    "margin":(
+        "prefix":"m"
+    ),
+    "margin-left":(
+        "prefix":"ml"
+    ),
+    "margin-right":(
+        "prefix":"mr"
+    ),
+    "margin-top":(
+        "prefix":"mt"
+    ),
+    "margin-bottom":(
+        "prefix":"mb"
+    ),
+    "padding":(
+        "prefix":"p"
+    ),
+    "padding-left":(
+        "prefix":"pl"
+    ),
+    "padding-right":(
+        "prefix":"pr"
+    ),
+    "padding-top":(
+        "prefix":"pt"
+    ),
+    "padding-bottom":(
+        "prefix":"pb"
+    ),
 );
 
 

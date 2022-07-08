@@ -1,6 +1,10 @@
 export const categories = [
     {
         url:"/",
+        text:"All"
+    },
+    {
+        url:"/",
         text:"Accounting"
     },
     {

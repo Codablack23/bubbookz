@@ -258,3 +258,207 @@
         }
     }
 }
+.bub__dashboard-online-books-page{
+    .bub__search-container{
+        display: flex;
+         width: 55%;
+        border-radius: 7px;
+        border: 1px solid #eee;
+        align-items: center;
+        padding: 0.7em;
+        margin-bottom: 1em;
+        input{
+            border: none;
+            outline: none;
+            margin-left: 10px;
+        }
+
+    
+    }
+    @include md{
+        .bub__search-container{
+            width: 70%;
+        }
+    }
+    @include sm{
+        .bub__search-container{
+            width: 85%;
+        }
+    }
+
+}
+// .bub__online-books-overflow{
+//     max-height: 600px;
+//     overflow-y: auto;
+// }
+.bub__online-book{
+    min-height: 200px;
+    border-radius: 7px;
+    padding: $padding * 0.5;
+    background-color: #22323F;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .bub__book-cover{
+      width: 30%;
+      border-radius: 7px;
+      img{
+          width: 100%;
+          border-radius: 7px;
+      }
+    }
+    @include md{
+        display: block;
+        text-align: center;
+        .bub__book-cover{
+            width: 50%;
+            margin: auto;
+        }
+    }
+}
+
+.bub__dashboard-orders-page{
+    margin: 1em 0;
+    .bub__dashboard-order{
+      min-height: 100px;
+      padding:0.7em 1em;
+      border: 1px solid #eee;
+    
+    }
+    .bub__order-date{
+        text-align: right;
+    }
+    .bub__order-list{
+    list-style: none;
+    padding: 0;
+    padding-block-start: 0;
+    li{
+        padding: 0.3em 0.7em;
+        display: flex;
+        align-items: center;
+        i{
+            margin-right: 10px;
+            font-size: 20px;
+            @extend .text-theme;
+        }
+      } 
+    }
+    @include md{
+        .bub__order-date{
+            text-align: left;
+        }
+    }
+}
+
+.bub__order-details-page{
+    .bub__order-info{
+       margin-top: 32px;
+    }
+    .bub__order-activity,.bub__order-delivery,.bub__order-payments{
+      min-height: 300px;
+    }
+    .bub__order-payments{
+      position: relative;
+      .bub-bottom{
+          position: absolute;
+          bottom: 10px;
+      }
+    }
+    .bub__timeline-order-list{
+      padding: 0px;
+      padding-block-start: 0;
+      list-style: none;
+      li{
+          display: flex;
+          padding:1em 0;
+          min-height: 50px;
+          align-items: center;
+          border-left: 1px solid $theme_color;
+          .icon{
+              margin-left: -10px;
+              margin-right: 10px;
+              z-index: 10px;
+              background-color: #fff;
+          }
+      }
+    }
+    .bub__book-order{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .cover{
+            height: 200px;
+            img{
+                height: 200px;
+            }
+        }
+        @include md{
+            text-align: center;
+            .cover{
+                img{
+                    width: 50%;
+                   
+                }
+            }
+        }
+        @include sm{
+            .cover{
+                img{
+                    width: 100%;
+                   
+                }
+            }
+        }
+    }
+}
+.bub__dashboard-settings-layout{
+    .bub__dashboard-menu{
+        width: 25%;
+        .bub__settings-link{
+            &:first-child{
+                border-top: none;
+            }
+            border-top: 1px solid #eee;
+            display: block;
+            padding: $padding * 0.7 $padding;
+        }
+    }
+    .bub__settings-content{
+        border: 1px solid #eee;
+        min-height: 400px;
+    }
+}
+.bub__notification-list{
+    list-style: none;
+    padding: 0;
+    padding-block-start: 0;
+    li{
+        input[type=checkbox]:checked{
+          background-color: $theme_color;
+        }
+        padding: 0.4em 0;
+    }
+}
+.bub__user-address{
+    &:last-child{
+        border-bottom: 1px solid #eee;
+    }
+  border-top: 1px solid #eee;
+
+}
+
+.bub__profile-img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #22323F;
+  img{
+    width: 100%;
+    object-fit: cover;
+    height: 100px;
+    border-radius: 50%;
+  }
+}
+.bub__event-code{
+    position: relative;
+}

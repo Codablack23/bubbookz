@@ -1,4 +1,16 @@
-export default function Button({height,color,callBack,children,custom_styles,border,type}){
+interface ButtonProps {
+    height?:string|number,
+    color?:string,
+    callBack?:Function,
+    children:string,
+    custom_styles?:{},
+    border?:{},
+    type?:string
+}
+
+
+export default function Button<ButtonProps>(props){
+    const {height,color,callBack,children,custom_styles,border,type} = props
     return (
         <button className="form--btn"
         type={type}

@@ -29,7 +29,34 @@ a {
 color: unset;
 text-decoration: none;
 }
+@each $key,$var in $colors {
+    .bub-bg-#{$key}{
+        background-color: $var !important;
+        color: lighten($color: $var, $amount: 50) !important;
+    }
+    .bub-text-#{$key}{
+        color: $var;
+    }
+}
 
+@each $key,$var in $utils {
+    $prefix:map-get($map: $var, $key:"prefix" );
+    @for $i from 0 through 5{
+     .bub-#{$prefix}-#{$i}{
+       #{$key}:$padding * 0.4 * $i;
+     }
+     @include md(){
+        .bub-#{$prefix}-md-#{$i}{
+            #{$key}:$padding * 0.4 * $i;
+          }
+     }
+     @include sm(){
+        .bub-#{$prefix}-sm-#{$i}{
+            #{$key}:$padding * 0.4 * $i;
+          }
+     }
+    }
+}
 .container{
     padding:$padding*0.7 $padding * 3;
 }
@@ -39,6 +66,9 @@ text-decoration: none;
 .card{
     box-shadow: 0px 10px 20px rgba(214, 214, 214, 0.4);
 }
+.bg-grey{
+    background-color: #8E8E8E;
+}
 .btn{
     border: none;
     background: none;
@@ -47,6 +77,9 @@ text-decoration: none;
     &:focus{
         outline: none;
     }
+}
+.pointer{
+    cursor: pointer;
 }
 .bg-fb{
     background-color:#3A559F;
@@ -138,6 +171,11 @@ text-decoration: none;
 .fw-bold{
     font-weight: 600;
 }
+.bub__contain{
+    max-width: 1096px;
+    margin: auto;
+    padding: $padding $padding;
+}
 // width and height classes
 .row{
     width: 100%;
@@ -168,7 +206,7 @@ text-decoration: none;
     width: 100%;
     display:grid;
     grid-template-columns: repeat(12,1fr);
-    gap: 10px;
+    gap: 22px;
     @for $i from 1 through 12{
         .grid-col-#{$i}{
             grid-column: span $i;
@@ -184,6 +222,12 @@ text-decoration: none;
           }
         }
       }
+    @include md{
+        gap: 12px;
+    }
+}
+.bub-grid.bub-grid-center{
+    align-items: center;
 }
 .p-relative{
   position: relative;
@@ -292,28 +336,33 @@ text-decoration: none;
      }
 }
 
-@for $i from 14 through 40{
+@for $i from 10 through 40{
     .small-#{$i}{
         font-size: $i * 1px;
     }
     @include md{
      .small-md-#{$i}{
-           font-size: $i * 1px;
+           font-size: $i * 1px !important;
      }  
     }
     @include sm{
      .small-sm-#{$i}{
-        font-size: $i * 1px;
+        font-size: $i * 1px !important;
      }
     }
 }
-
+@each $k, $v in $casing{
+    .bub-case-#{$k}{
+        text-transform: $v;
+    }
+}
+.btn-smaller{
+    @include btn;
+    padding:0.3em;
+}
 .btn-small{
-    border:none;
-    margin:1em auto,;
-    border-radius:7px;
-    padding:0.5em;
-    cursor:pointer;
+   @include btn;
+   padding:0.5em;
 }
 .text-disabled{
     color: #8E8E8E;
@@ -322,11 +371,11 @@ text-decoration: none;
     border-radius: 7px;
 }
 .btn{
-    border:none;
-    margin:1em auto,;
-    border-radius:7px;
+    @include btn;
     padding:0.8em;
-    cursor:pointer;
+}
+.text-right{
+    text-align: right;
 }
 .input-label{
     display: block;
@@ -340,12 +389,14 @@ text-decoration: none;
     padding: $padding * 0.4;
     outline: none;
     resize: none;
+    border-radius: 7px;
 }
 .input-group{
     display: flex;
     min-height: 35px;
     border: 0.5px solid #888888;
     border-radius: 7px;
+    align-items: center;
     .side{
         outline: none;
         border: none;
@@ -359,8 +410,15 @@ text-decoration: none;
         margin-right: 10px;
         border-left:  0.5px solid #888888;
     }
-    input{
-
+    .side.right-actions{
+        margin-left: auto;
+        cursor: pointer;
+    }
+    .side.left-actions{
+        margin-right: auto;
+        cursor: pointer;
+    }
+    input,select{
         border: none;
         background: none;
         outline: none;
@@ -428,3 +486,25 @@ hr{
     opacity: 0.2;
 }
 
+.bub__sort-widget{
+    border: 1px solid #8E8E8E;
+    border-radius: 7px;
+    padding: 0.3em;
+    position: relative;
+    .text{
+        position: absolute;
+        top: -10px;
+        left: 20px;
+        background-color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    select{
+        width: 97%;
+        border: none;
+        outline: none;
+    }
+}
+.bub-case-capital{
+    text-transform: capitalize;
+}

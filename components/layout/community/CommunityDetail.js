@@ -46,12 +46,12 @@ export default function CommunityDetailLayout({pageName,children,activepage}){
                 </div>
                <ul className="community-tab">
                  <li className={`tab ${activepage == "about"?"active":""}`}>
-                   <Link href={"/community/10/"}>
+                   <Link href={"/community/10/"} scroll={false}>
                    <a >About</a>
                    </Link>
                  </li>
                  <li className={`tab ${activepage == "discussions"?"active":""}`}>
-                  <Link href={"/community/10/discussions"}>
+                  <Link href={"/community/10/discussions"} scroll={false}>
                      <a >Discussions</a>
                    </Link>
                  </li>

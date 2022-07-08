@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react"
 
-const CardDetails=({isShown,setCardDetails,cardDetails,setIsEditing})=>{
+const CardDetails=({setCardDetails,cardDetails,setIsEditing})=>{
     const [cardHolder,setCardHolder] = useState('')
     const [cardNumber,setCardNumber] = useState('')
     const [cardExpiry,setCardExpiry] = useState('')
@@ -9,7 +9,8 @@ const CardDetails=({isShown,setCardDetails,cardDetails,setIsEditing})=>{
     const [hasAgreed,setHasAgreed] = useState(false)
   
   
-    const handleAddCard =()=> {
+    const handleAddCard =(e)=> {
+      e.preventDefault()
       setCardDetails({
         holder:cardHolder,
         number:cardNumber,
@@ -34,9 +35,9 @@ const CardDetails=({isShown,setCardDetails,cardDetails,setIsEditing})=>{
      }
     },[cardDetails])
   
-    if(isShown){
+   
     return(
-      <div className="card-details container-small card w-75 w-sm-100 br bg-white">
+      <form className="card-details bub-mt-3 container-small card w-75 w-sm-100 br bg-white" onSubmit={handleAddCard}>
     <div className="flex justify-content-space-between">
     <p className="text-accent-1 ">Enter Card Details</p>
     <p 
@@ -58,6 +59,8 @@ const CardDetails=({isShown,setCardDetails,cardDetails,setIsEditing})=>{
        <input
         type="number" 
         value={cardNumber} 
+        minLength ="16"
+        required
         onChange={(e)=>setCardNumber(e.target.value)} 
         className="input br w-100" />
       </div><br />
@@ -104,11 +107,9 @@ const CardDetails=({isShown,setCardDetails,cardDetails,setIsEditing})=>{
        I hereby authorize Bubbooks to debit the said amount in my cart from my selected payment method 
        </p>
      </div>
-     <button className="btn w-100 bg-theme" onClick={handleAddCard}>Add Card</button>
-     </div>
-    )}else{
-      return null
-    }
+     <button className="btn w-100 bg-theme">Add Card</button>
+     </form>
+    )
   }
 
 

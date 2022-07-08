@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { useState } from "react"
 import {Links} from '../../../data/links'
 
 export default function Navigation({showNav,setNavOpen}){
