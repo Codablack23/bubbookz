@@ -4,7 +4,7 @@ const levels =[
 
 export default function LevelMenu(){
     function openDropDown(id){
-        const dropdown = document.querySelector(`#dropdown-level-${id}`)
+        const dropdown = document.querySelector(`#dropdown-level-${id}`) as HTMLElement
         if(dropdown.style.maxHeight){
             dropdown.style.maxHeight = null
         }else{

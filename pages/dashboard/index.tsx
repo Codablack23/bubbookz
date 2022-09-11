@@ -1,19 +1,32 @@
-import Button from  '~/components/layout/user/buttons'
-import Link from 'next/link'
+import { useContext, useEffect, useState } from 'react'
+import DashboardLayout from '~/components/layout/dashboard/DashboardLayout'
 import SelectAccountType from '~/components/widgets/dashboard/accountType'
-import SelectBookGenre from '~/components/widgets/dashboard/bookGenre'
 import LevelMenu from '~/components/widgets/dashboard/LevelMenu'
 import ShelfBook from '~/components/widgets/dashboard/ShelfBook'
-import DashboardLayout from "~/components/layout/dashboard/DashboardLayout"
+import NotFound from '~/components/widgets/NotFound'
+import { BookContext } from '~/context/book/BookContext'
 
 
+interface Book{
+    title:string,
+    author:string,
+    book_img:string,
+    book_description:string,
+    format:string,
+    price:string | number
+    [key:string]:any
+}
 export default function DashBoard(){
+    const [books,setBooks] = useState<Book[]>([])
+    const {bookData} = useContext(BookContext)
     const levels:number[] =[
         100,200,300,400,500,600
     ]
-    return (
-    // //   <SelectAccountType/>
-    // <SelectBookGenre/>
+    useEffect(()=>{
+        setBooks(bookData.filter(book=>book.format === "buy"))
+    },[bookData])
+    
+    return(
     <DashboardLayout activePage={"level"}>
         <header className="bub__level-page-header">
          <div className="bub__level-mobile">
@@ -36,9 +49,11 @@ export default function DashBoard(){
        <div className="bub__dashboard-page-content">
          <LevelMenu/>
          <div className="bub__book-shelf-wrapper">
-         <ShelfBook/><br />
-         <ShelfBook/><br />
-         <ShelfBook/>
+          {books.length > 0?
+            books.map((book,i)=>(
+                <ShelfBook book={{...book,index:i}} key={book.book_id}/>
+            ))
+          :<NotFound title={"books"}/>}
         </div>
      </div>
     </DashboardLayout>

@@ -31,7 +31,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "components/widgets/buttons.tsx", "components/layout/user/buttons.js"  ],
+, "components/widgets/buttons.tsx", "components/layout/user/buttons.tsx", "components/layout/home/HomeLayout.js"  ],
   "exclude": [
     "node_modules"
   ]

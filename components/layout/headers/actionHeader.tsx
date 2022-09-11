@@ -1,14 +1,18 @@
+import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "~/context/auth/AuthContext";
+import User from "~/helpers/User";
 
 export default function ActionHeader({className}){
+
     return(
         <ul className={className}>
         <li className="header--actions-link">
         <Link href={"/"}>
           <a>
              <span>
-                <img src="/icons/help.svg" alt="" />
+                <Image height={"20px"} width={"20px"} src="/icons/help.svg" alt="help-icon" />
              </span>
                <span className="hide-lg">Help</span> 
               </a>
@@ -18,7 +22,7 @@ export default function ActionHeader({className}){
         <Link href={"/"}>
           <a>
              <span>
-                <img src="/icons/love.svg" alt="" />
+                <Image height={"20px"} width={"20px"} src="/icons/love.svg" alt="love-icon" />
              </span>
                <span className="hide-lg">WishList</span> 
               </a>
@@ -26,7 +30,7 @@ export default function ActionHeader({className}){
         </li>
         <li className="header--actions-link dropdown">
           <span>
-            <img src="/icons/person.svg" alt="" />
+            <Image height={"20px"} width={"20px"} src="/icons/person.svg" alt="person-iconm" />
           </span>
           <span className="hide-lg">Accounts</span> 
           <span style={style.dropDown}><i className="bi bi-chevron-down"></i></span>
@@ -49,20 +53,22 @@ const style={
 
 const DropDown =()=>{
   const [logged,setLogged] = useState(false)
+  
+  const {state,dispatch} = useContext(AuthContext)
   const links:{icon:string,url:string,text:string}[] =[
     {
       icon:"bi-columns-gap",
-      url:"/",
+      url:"/dashboard",
       text:"Dashboard"
     },
     {
       icon:"bi-heart",
-      url:"/",
+      url:"/user/wishlist",
       text:"WishList"
     },
     {
       icon:"bi-card-list",
-      url:"/",
+      url:"/dashboard/orders",
       text:"Orders"
     },
     {
@@ -72,6 +78,15 @@ const DropDown =()=>{
     },
   
   ]
+  async function logOut(){
+    const response = await User.logOut()
+    dispatch({type:"LOGOUT"})
+  }
+  useEffect(()=>{
+    if(state){
+       setLogged(state.isLoggedIn)
+    }
+  },[state])
   return (
     <div className="dropdown--menu">
      {!logged?
@@ -106,7 +121,7 @@ const DropDown =()=>{
      {
        logged?
        <li>
-       <Link href={"/user/signup"}>
+       <Link href={"/dashboard/settings"}>
        <a className="dropdown--link">
          <span>
            <i className="bi bi-gear"></i>
@@ -122,14 +137,12 @@ const DropDown =()=>{
     {
       logged?
       <li>
-      <Link href={"/user/signup"}>
-      <a className="dropdown--link logout">
+      <a className="dropdown--link logout" onClick={logOut}>
         <span>
         <i className="bi bi-box-arrow-right"></i>
         </span>
          <span>Log Out</span>
        </a>
-      </Link>
     </li>
       :null
     }

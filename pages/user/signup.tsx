@@ -3,19 +3,104 @@ import Button from  '../../components/layout/user/buttons'
 import styled from 'styled-components'
 import Link from 'next/link'
 import SelectDropDown from '../../components/widgets/user/selectDropDown'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import Image from 'next/image'
+import { validateFields } from '~/helpers/validator'
+import { notification, Spin } from 'antd'
+import User from '~/helpers/User'
+import { AuthContext } from '~/context/auth/AuthContext'
 
 const schools =[
  "University Of Port Harcourt",
   "University Of Calabar",
   "River State Polytechnic"
 ]
+interface Errors {
+  email?:string,
+  password?:string,
+  firstname?:string,
+  lastname?:string,
+  faculty?:string,
+  department?:string,
+  confirm_password?:string,
+  school?:string,
+}
 
 export default function SignUp(){
-    const [school,setSchool] = useState(null)
-    const [faculty,setFaculty] = useState(null)
-    const [dept,setDept] = useState(null)
-    
+    const [school,setSchool] = useState("")
+    const [faculty,setFaculty] = useState("")
+    const [dept,setDept] = useState("")
+    const [firstname,setFirstName] = useState("")
+    const [email,setEmail] = useState("")
+    const [password,setPassword] = useState("")
+    const [confirmPassword,setConfirmPassword] = useState("")
+    const [lastname,setLastName] = useState("")
+    const [errors,setErrors] = useState<Errors>({})
+    const [isLoading,setIsLoading] = useState(false)
+    const {dispatch} = useContext(AuthContext)
+     async function handleSignUp(e:Event){
+       e.preventDefault()
+       const inputErrors = validateFields([
+        {inputField:email,inputType:"email"},
+        {inputField:password,inputType:"password"},
+        {inputField:confirmPassword,inputType:"password",inputName:"Confirm_Password"},
+        {inputField:lastname,inputType:"text",inputName:"Lastname"},
+        {inputField:firstname,inputType:"text",inputName:"Firstname"},
+        {inputField:school,inputType:"text",inputName:"School"},
+        {inputField:faculty,inputType:"text",inputName:"Faculty"},
+        {inputField:dept,inputType:"text",inputName:"Department"},
+       ])
+       const errObj:Errors =  { }
+       inputErrors.forEach(err=>{
+          errObj[err.field] = err.error
+       })
+       setErrors(errObj)
+       console.log({errObj})
+     
+       if(inputErrors.length === 0){
+        setIsLoading(true);
+         const newUser = {
+          email,
+          password,
+          lastname,
+          firstname,
+          school,
+          faculty,
+          department:dept
+         }
+         if(password !== confirmPassword){
+          setIsLoading(false);
+          notification.error({
+            message:<p className='error-text'>Password Error</p>,
+            description:<p><small>Confirm Password and Password fields do not match</small></p>
+          })
+         
+         }else{
+          const response:{
+            status:string,
+            message:string,
+            error:string,user:{}
+          } = await User.signUpUser(newUser);
+          setIsLoading(false);
+          if(response.status === "success"){
+            notification.success({
+              message:<h3 style={{textTransform:"capitalize"}}>{response.status}</h3>,
+              description:<p><small>{response.message}</small></p>
+            })
+            dispatch({type:"SIGN_UP",data:{user:response.user}})
+            window.location.assign("/dashboard")
+          }else{
+            notification.error({
+              message:<h3 className='error-text' style={{textTransform:"capitalize"}}>{response.status}</h3>,
+              description:<p><small>{response.error}</small></p>
+            })
+          }
+          
+         }
+       }
+    }
+   
+
     function showDropDown(id){
       const dropDown = document.querySelector(`#dropdown-${id}`) as HTMLDivElement
       dropDown.classList.toggle('hide')
@@ -31,21 +116,35 @@ export default function SignUp(){
 
           <label htmlFor="firstname">First Name</label>
          <div className="form--input-group">
-           <input type="text" />
-         </div><br />
+           <input
+            type="text" 
+            value={firstname}
+            onChange={(e)=>setFirstName(e.target.value)}
+             />
+         </div>
+         <p className="error-text"><small>{errors.firstname}</small></p>
+         <br />
 
          <label htmlFor="password">Last Name</label>
           <div  className="form--input-group">
-            <input type="password"  className="login-password-input" />
+            <input type="text" value={lastname} onChange={(e)=>setLastName(e.target.value)} className="login-password-input" />
             {/**/}
-          </div><br />
+          </div>
+          <p className="error-text"><small>{errors.lastname}</small></p>
+          <br />
          
           <label htmlFor="email">Email</label>
          <div className="form--input-group">
-           <input type="email" />
-         </div><br />
+           <input
+            type="email"
+            value={email}
+            id="email"
+            onChange={(e)=>setEmail(e.target.value)}/>
+         </div>
+         <p className="error-text"><small>{errors.email}</small></p>
+         <br />
 
-         <label htmlFor="password">School</label>
+         <label htmlFor="school">School</label>
           <div  
           className="form--input-group"
           onClick={()=>showDropDown('school')}
@@ -59,6 +158,7 @@ export default function SignUp(){
           <div className='select--dropdown hide' onMouseLeave={()=>showDropDown('school')} id="dropdown-school">
           <SelectDropDown selectFunction={setSchool} items={schools}/>
           </div>
+          <p className="error-text"><small>{errors.school}</small></p>
           <br />
 
           <label htmlFor="falc">Faculty</label>
@@ -75,6 +175,7 @@ export default function SignUp(){
          <div className='select--dropdown hide' onMouseLeave={()=>showDropDown('faculty')} id="dropdown-faculty">
           <SelectDropDown selectFunction={setFaculty} items={schools}/>
           </div>
+          <p className="error-text"><small>{errors.faculty}</small></p>
          <br />
 
          <label htmlFor="dept">Department</label>
@@ -91,27 +192,43 @@ export default function SignUp(){
           <div className='select--dropdown hide' onMouseLeave={()=>showDropDown('dept')} id="dropdown-dept">
           <SelectDropDown selectFunction={setDept} items={schools}/>
           </div>
+          <p className="error-text"><small>{errors.department}</small></p>
           <br />
 
          <label htmlFor="password">Password</label>
           <div  className="form--input-group">
-            <input type="password"  className="login-password-input" />
+            <input
+             type="password" 
+             value={password}
+             className="login-password-input"
+             onChange={(e)=>setPassword(e.target.value)} />
             {/**/}
             <span className='btn'>
             <i className='bi bi-eye'></i> 
             </span>
-          </div><br />
+          </div>
+          <p className="error-text"><small>{errors.password}</small></p>
+          <br />
 
           <label htmlFor="password">Confirm Password</label>
           <div  className="form--input-group">
-            <input type="password"  className="login-password-input" />
+            <input
+              type="password"
+              value={confirmPassword}
+              className="login-password-input" 
+              onChange={(e)=>setConfirmPassword(e.target.value)}/>
             {/**/}
             <span className='btn'>
             <i className='bi bi-eye'></i> 
             </span>
-          </div><br />
+          </div>
+          <p className="error-text"><small>{errors.confirm_password}</small></p>
+          <br />
 
-          <Button {...BtnProps.signUp}>Sign Up</Button>
+          {isLoading?
+          <Button {...BtnProps.signUp}><Spin/></Button>
+          :<Button {...BtnProps.signUp} callBack={handleSignUp}>Sign Up</Button>
+          }
 
             <div className="agree flex align-items-center">
                 <input type="checkbox" name="agree" id="agree" />
@@ -134,15 +251,13 @@ export default function SignUp(){
          </div>
 
          <Button {...BtnProps.googleSignUp} >
-           <div className='flex justify-content-center'>
-           <span style={style.googleSignUp}>
-              <img src="/icons/Google.svg" alt="" />
-            </span>
-            Sign Up with Google
+           <div className='flex align-items-center justify-content-center'>
+              <Image src="/icons/Google.svg" alt="" height={"23px"} width={"23px"}/>
+              <span className="text-disabled small-14 fw-bold bub-ml-1">Sign Up with Google</span>
            </div>
          </Button>
 
-         <span style={style.signUpLink}>
+         <span className='text-center' style={style.signUpLink}>
            Already Have an Account? 
            <Link href={'/user/login'}>
              <a style={style.a}
@@ -165,7 +280,6 @@ const style = {
   signUpLink:{
     display:'block',
     margin:"2em auto",
-    textAlign:'center',
     fontSize:'15px',
     color:"#ABABAB"
   },

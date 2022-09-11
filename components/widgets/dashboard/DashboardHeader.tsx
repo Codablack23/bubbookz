@@ -1,4 +1,16 @@
+import Image from "next/image";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "~/context/auth/AuthContext";
+
 export default function DashboardHeader(){
+  const {state} = useContext(AuthContext)
+  const [user,setUser] = useState<any>({})
+
+  useEffect(()=>{
+    if(state && state.user !== null){
+      setUser(state.user)
+    }
+  },[state])
     return(
         <header className="bub-dashboard-header">
            <div className="bub-dashboard-banner bg-accent-1">
@@ -8,14 +20,18 @@ export default function DashboardHeader(){
            </div>
            <div className="bub-account-info bg-white container-small card br w-85 w-md-95">
              <div className="bub-account-cover-container text-center">
-               <div className="bub-account-cover">
-                   <img src="/images/dashboard-profile.svg" alt="" />
+               <div className="bub-account-cover flex align-items-center justify-content-center" style={{borderRadius:"50%",backgroundColor:"#22323F"}}>
+                  {user && user.profile_picture?
+                      <Image src="/images/dashboard-profile.svg" layout="responsive" alt="profile_picture" height={"100%"} width={"100%"} />
+                  :<i className="bi bi-person small-40 bub-text-white"></i>
+                  
+                  }
                </div>
-               <p className="small-26 fw-bold">Roland James</p>
-               <p className="text-disabled">rowlandjones@gmail.com</p>
+               <p className="small-26 fw-bold">{user.first_name} {user.last_name}</p>
+               <p className="text-disabled">{user.email}</p>
              </div><br />
              <div className="flex justify-content-space-between w-100">
-                 <p className="text-disabled">Account Type : Student</p>
+                 <p className="text-disabled">Account Type : {user.account_type}</p>
                  <p>
                    <i className="bi bi-pencil text-disabled small-16 fw-bold"></i>
                  </p>
@@ -25,19 +41,19 @@ export default function DashboardHeader(){
                   marginBottom:"15px"
                 }}>
                   <p className="text-disabled small-14">School</p>
-                  <p className="small-16">University Of Port Harcourt</p>
+                  <p className="small-16">{user.school}</p>
                 </div>
                 <div style={{
                   marginBottom:"15px"
                 }}>
                   <p className="text-disabled small-14">Faculty</p>
-                  <p className="small-16">Faculty of Sciences</p>
+                  <p className="small-16">Faculty of {user.faculty}</p>
                 </div>
                 <div style={{
                   marginBottom:"15px"
                 }}>
                   <p className="text-disabled small-14">Department</p>
-                  <p className="small-16">Biochemsistry</p>
+                  <p className="small-16">{user.faculty}</p>
                 </div>
              </div>
            </div>

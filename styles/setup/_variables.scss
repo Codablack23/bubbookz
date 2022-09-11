@@ -23,8 +23,8 @@ $colors:(
     "accent":#2f455c,
     "light-grey":#DAE3E6C3,
     "dark":#1E1E1E,
-     black:black
-   
+    "black":black,
+    "white":#fff
 );
 
 $utils:(
@@ -77,7 +77,7 @@ $align_items:(center,flex-end,flex-start);
 $wrap:(wrap,nowrap);
 $flexDirection:(row,column,row-reverse,column-reverse);
 
-$font_size:18px;
+$font_size:16px;
 $fonts:(
     "1":(
     "family":"Louis George Cafe",

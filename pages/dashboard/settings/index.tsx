@@ -1,6 +1,7 @@
 import DashboardSettingsLayout from "~/components/layout/dashboard/SettingsLayout";
 import ProfileForm from '~/components/widgets/dashboard/ProfileForm'
 import PasswordForm from '~/components/widgets/dashboard/PasswordForm'
+import Image from "next/image"
 
 export default function SettingsHomePage(){
     return(
@@ -14,7 +15,7 @@ export default function SettingsHomePage(){
 
                 <div className="bub__profile flex align-items-center">
                  <div className="bub__profile-img">
-                    <img src="/images/dashboard-profile.svg" alt="" className="img-fluid" />
+                    <Image layout="responsive" width={"100%"} height={"100%"} src="/images/dashboard-profile.svg" alt="" className="img-fluid" />
                  </div>
                  <div className="bub-ml-5">
                     <label htmlFor="upload-img" className="btn-small bg-theme text-white card">Upload Photo</label><br />

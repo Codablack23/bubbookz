@@ -1,10 +1,58 @@
+import {useState,useContext} from 'react'
 import FormContainer from  '../../components/layout/user/forms'
 import Button from  '../../components/layout/user/buttons'
-import styled from 'styled-components'
 import Link from 'next/link'
 import Image from 'next/image'
+import { AuthContext } from '~/context/auth/AuthContext'
+import { validateFields } from '~/helpers/validator'
+import { notification, Spin } from 'antd'
+import User from '~/helpers/User'
+import { useRouter } from 'next/router'
+
+interface Errors{
+  email?:string,
+  password?:string
+}
 
 export default function Login(){
+  const Router = useRouter()
+    const [email,setEmail] = useState("")
+    const [password,setPassword] = useState("")
+    const [errors,setErrors] = useState<Errors>({email:"",password:""})
+    const {dispatch} = useContext(AuthContext)
+    const [isLoading,setIsLoading] = useState(false)
+
+    async function handleLogin(e){
+      e.preventDefault()
+      const fieldErrors = validateFields([
+        {inputField:email,inputType:"email"},
+        {inputField:password,inputType:"password"},
+      ])
+      const errObj:Errors = {}
+      fieldErrors.forEach(err=>{
+        errObj[err.field] = err.error
+      })
+      setErrors(errObj)
+      if(fieldErrors.length === 0){
+        setIsLoading(true)
+        const response = await User.loginUser({email,password})
+        setIsLoading(false)
+        if(response.user){
+          dispatch({type:"LOGIN",data:{user:response.user}})
+          const redirect = Router.query.redirect
+          window.location.assign(redirect?(redirect as string):"/dashboard")
+        }else{
+          notification.error({
+            message:"Login Failed",
+            description:response.error,
+            style:{
+              width:300
+            }
+           })
+        }
+      }
+     
+    }
     return(
     <FormContainer title={"Login"} extraClass={null}>
         <div className="form--title">
@@ -15,22 +63,25 @@ export default function Login(){
 
             <label htmlFor="email">Email</label>
            <div className="form--input-group">
-             <input type="email" />
-           </div><br />
-
+             <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
+           </div>
+            <p className="error-text"><i className='small-13'>{errors.email}</i></p>
             <label htmlFor="password">Password</label>
             <div  className="form--input-group">
-              <input type="password"  className="login-password-input" />
+              <input type="password"  className="login-password-input" value={password} onChange={(e)=>setPassword(e.target.value)}/>
               <span className='btn'>
               <i className='bi bi-eye'></i> 
               </span>
             </div>
+            <p className="error-text"><i className='small-13'>{errors.password}</i></p>
 
             <Link href={"/user/forgot-password"}>
                 <a className="forgot-password">Forgot Password ?</a>
             </Link>
 
-            <Button {...BtnProps.login}>Login</Button>
+            <Button {...BtnProps.login} type={"button"} callBack={handleLogin}>
+              {isLoading?<Spin/>:"Login"}
+            </Button>
 
            <div className="or">
              <hr />

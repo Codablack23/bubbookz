@@ -26,7 +26,7 @@ export default function MakePayments(){
               <p className="small-24 fw-bold">Total</p>
               <p className="small-24 fw-bold text-theme">N15,000.00</p>
             </div>
-            <button className="btn w-100 bg-theme">Make Payment</button>
+            <button className="btn w-100 bg-theme">Create Order</button>
         </div>
     )
 }

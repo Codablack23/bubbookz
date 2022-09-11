@@ -1,5 +1,10 @@
 import HomeLayout from '~/components/layout/home/HomeLayout'
 import Link from 'next/link'
+import { useContext, useEffect, useState } from 'react'
+import User from '~/helpers/User'
+import { AuthContext } from '~/context/auth/AuthContext'
+import { Skeleton } from 'antd'
+
 const menus =[
     {
         name:"User Information",
@@ -28,11 +33,51 @@ const menus =[
     }
     
 ]
+function LoadingScreen(){
+    return(
+       <div className='bub-p-5'>
+         <div className='bub-grid'>
+                <div className="grid-col-4 grid-col-md-12">
+                <Skeleton
+                title={false}
+                active={true}
+                paragraph={{ rows: 6 }}
+                />
+                </div>
+                <div className="grid-col-8 grid-col-md-12">
+                <Skeleton
+                    title={false}
+                    active={true}
+                    paragraph={{ rows: 12}}
+                    />
+                </div>
+          </div>
+       </div>
+    )
+}
 export default function DashboardSettingsLayout({children,page}){
+    const {state} = useContext(AuthContext)
+    const [isLoading,setIsLoading] = useState(true)
+    async function checkUser(){
+      const response = await User.authenticate()
+      if(response.status !== "logged in"){
+        window.location.assign("/user/login")
+      }else{
+        setIsLoading(false)
+      }
+    
+    }
+    useEffect(()=>{
+       checkUser()
+    },[state])
+
     return(
         <div className='bub__dashboard-settings-layout'>
             <HomeLayout title={"Dashboard Settings"}>
-              <div className="bub__contain bub-mb-3">
+                {isLoading?
+                   <LoadingScreen/>
+                :<>
+                 <div className="bub__contain bub-mb-3">
                   <p className="fw-bold bub-text-accent small-28 bub-mb-2">Account Settings</p>
                   <div className="flex justify-content-space-between align-items-flex-start">
                     <div className="bub__dashboard-menu card curved">
@@ -46,7 +91,9 @@ export default function DashboardSettingsLayout({children,page}){
                     {children}
                     </div>
                   </div>
-              </div><br /><br />
+              </div><br /><br /> 
+                </>
+                }
             </HomeLayout>
         </div>
     )

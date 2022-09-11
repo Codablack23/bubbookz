@@ -1,14 +1,21 @@
-import CommunityDetailLayout from "../../../components/layout/community/CommunityDetail";
+import CommunityDetailLayout from "~/components/layout/community/CommunityDetail";
+import {useState,useEffect,useContext} from 'react';
+import { CommunityContext } from "~/context/Community/Context";
+
+interface Comm{
+    [key:string]:any
+}
 
 export default function CommunityAbout(){
+   const {community} = useContext(CommunityContext)
     return(
        <CommunityDetailLayout pageName={"Community"} activepage={"about"}>
          <div className="community-about">
             <div className="w-80 w-md-100 curved bg-white container-small card">
                 <h1 className="small-24 fw-reg">About this community</h1><br />
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum dolorum quibusdam fuga eligendi suscipit quam qui non officiis, et sint perspiciatis autem accusantium in dolores obcaecati tempore odit earum. Tempora voluptatibus molestiae quisquam suscipit debitis mollitia, necessitatibus praesentium obcaecati repellendus.</p>
+                <p>{community.about?community.about:""}</p>
             </div><br /><br />
-            <div className="w-80 w-md-100 bg-white container-small curved card">
+            {/* <div className="w-80 w-md-100 bg-white container-small curved card">
                 <br />
                 <h1 className="small-24 fw-reg">Community Rules</h1><br />
                 <ul className="community-rules">
@@ -17,7 +24,7 @@ export default function CommunityAbout(){
                     <li className="small-14"><span>3</span>  Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
                     <li className="small-14"><span>4</span>  Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
                 </ul>
-            </div><br />
+            </div><br /> */}
          </div>
        </CommunityDetailLayout>
     )

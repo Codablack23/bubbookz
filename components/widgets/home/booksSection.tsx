@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 function getRatings(end,star){
@@ -5,6 +6,33 @@ function getRatings(end,star){
     <span key={i}>
       <i className={`bi ${star} text-star`}></i>
     </span>
+  )
+}
+function BookWidget({book}){
+  return(
+    <div className="book card bg-white" key={""}>
+    <div className=" ">
+   <Link href={`/books/${book.book_id}`} passHref>
+   <div className="book-img-container">
+      <Image height={"100%"} layout="responsive" width={"100%"} src={book.book_img} alt={book.title}  />
+      <button className="wishlist card">
+        <i className="bi bi-heart text-theme"></i>
+      </button>
+    </div>
+   </Link>
+   <br />
+   <div className="book-info">
+     <h3 className="book-title">{book.title}</h3>
+     <p className="book-author"><span>By</span> {book.author}</p>
+     <h1 className="book-price">N {book.price}</h1>
+     <br />
+     <div className="ratings-container flex">
+       {getRatings(4,"bi-star-fill" )}
+       {getRatings(5 - 4,"bi-star" )}
+     </div>
+   </div>
+    </div>
+  </div>
   )
 }
 function Scroll(x,id){
@@ -22,27 +50,8 @@ export default function BooksSection({heading,books}){
             </Link>
           </header>
           <div className={`book-grid book-grid-${heading.replaceAll(" ","-")}`}>
-                 {books.map(book=>(
-                   <div className="book card bg-white" key={""}>
-                     <div className=" ">
-                     <div className="book-img-container">
-                       <img src={book.img} alt="" />
-                       <button className="wishlist card">
-                         <i className="bi bi-heart text-theme"></i>
-                       </button>
-                     </div>
-                    <div className="book-info">
-                      <h3 className="book-title">{book.name}</h3>
-                      <p className="book-author"><span>By</span> {book.author}</p><br />
-                      <h1 className="book-price">N {book.price}</h1>
-                      <br />
-                      <div className="ratings-container flex">
-                        {getRatings(book.ratings,"bi-star-fill" )}
-                        {getRatings(5 -book.ratings,"bi-star" )}
-                      </div>
-                    </div>
-                     </div>
-                   </div>
+                 {books.map((book,i)=>(
+                  <BookWidget key={`${i}-all-books`} book={book}/>
                  ))}
                </div>
                   <button className="prev card" onClick={()=>Scroll(-200,heading)}>

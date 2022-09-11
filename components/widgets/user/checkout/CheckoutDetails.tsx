@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { AuthContext } from "~/context/auth/AuthContext"
 import AddressDetails from "./AddressDetails"
 import CardDetails from './CardDetails'
 
+export default function CheckoutDetails({actions,user}){
+  const [usePaymentMethod,useDeliveryMethod,useAddressDetails,useLocation] = actions
 
-export default function CheckoutDetails(){
 
-  const [addressDetails, setAddressDetails] = useState(null)
-  const [pickUpLocation,setPickUpLocation] = useState(null)
+  const [addressDetails, setAddressDetails] = useAddressDetails
+  const [pickUpLocation,setPickUpLocation] = useLocation
   const [isEditingAddress,setIsEditingAddress] = useState(false)
   const [isEditingLocation,setIsEditingLocation] = useState(false)
-  const [deliveryMethod,setDeliveryMethod] = useState(null)
-  const [paymentMethod,setPaymentMethod] = useState(null)
-  const [cardDetails,setCardDetails] = useState(null)
-  const [isEditing,setIsEditing] = useState(false)
-
+  const [deliveryMethod,setDeliveryMethod] = useDeliveryMethod
+  const [paymentMethod,setPaymentMethod] = usePaymentMethod
+  
   function selectPickUpLocation(e){
        setPickUpLocation(e.target.value)
        console.log(pickUpLocation)
@@ -24,19 +24,10 @@ export default function CheckoutDetails(){
     <div className="checkout-detail min-vh-20">
         <header className="w-100 flex align-items-center justify-content-space-between">
             <p className="text-disabled small-16">YOUR DETAILS</p>
-            <button
-            style={{
-                border:'none',
-                background:"none",
-                cursor:"pointer"
-            }}
-            >
-              <i className="text-disabled bi bi-pencil"></i>
-            </button>
         </header>
         <div style={{margin:"0.5em 0"}}>
-            <p className="fw-bold small-24">Roland James</p><br/>
-            <p className="small-16">+234 813 267 5894</p>
+            <p className="fw-bold small-24">{user.first_name} {user.last_name}</p><br/>
+            <p className="small-16">{user.phone_no}</p>
         </div>
       </div>
 
@@ -82,7 +73,7 @@ export default function CheckoutDetails(){
               }}
               >Add an Address</p>
               {addressDetails !== null && !isEditingAddress && (
-                <p className="bub-mt-3 bub-case-capital fw-bold">{addressDetails.address}, {addressDetails.city}, {addressDetails.state} state</p>
+                <p className="bub-mt-3 bub-case-capital fw-bold">{addressDetails.address}, {addressDetails.city}, {addressDetails.state}</p>
               )}
             </div>
           </div>
@@ -139,11 +130,14 @@ export default function CheckoutDetails(){
             <p className="fw-bold bub-mb-1">Select pick up station</p>
             <div className="input-group">
               <select name="" value={pickUpLocation} onChange={selectPickUpLocation} id="" className="w-95">
-                <option value={null}>Select</option>
+                <option value={""}>Select</option>
                 <option value="Ofrima">Ofrima</option>
               </select>
             </div>
             </form>
+          )}
+          {!isEditingLocation && (pickUpLocation !== null || pickUpLocation !== "") && (
+            <p><b>{pickUpLocation}</b></p>
           )}
       </div>
   
@@ -159,37 +153,9 @@ export default function CheckoutDetails(){
           <div className="w-90"  style={{marginLeft:"1em"}}>
           <header className="flex justify-content-space-between w-100">
           <p>Credit Card</p>
-          <p 
-          style={{marginLeft:"auto",cursor:"pointer"}}
-          >
-              {
-              paymentMethod ==="card"? 
-              <>
-              {cardDetails !== null?
-                <i className="text-disabled bi bi-pencil" onClick={()=>setIsEditing(true)}></i>
-              :null}
-              </>
-              :null
-              }
-              
-          </p>
           </header>
-          <div>
-            {cardDetails === null || isEditing || paymentMethod !=='card'?
-            null
-            :<p 
-            className="text-accent-1 fw-bold"
-            style={{marginTop:"0.7em"}}
-            >{cardDetails.number}</p>}
-          </div>
         </div>
       </div>
-      {paymentMethod ==="card" && (isEditing || cardDetails === null) && (
-          <CardDetails 
-            setIsEditing={setIsEditing}
-            cardDetails = {cardDetails}
-            setCardDetails={setCardDetails}/>
-      )}
       <br />
       <hr /><br />
       <div className="delivery-method flex align-items-flex-start">

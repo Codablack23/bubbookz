@@ -99,3 +99,50 @@ export default function Tab(){
         </div>
     )
 }
+
+export function BookRating(){
+    return(
+        <div className="book-reviews flex flex-wrap">
+        <div className="book-rating-overview bg-white w-35 w-md-65 w-sm-85 min-vh-40 br">
+           <header className="text-center">
+              <p className="text-accent fw-bold" style={{marginBottom:'10px'}}>Product Rating</p>
+              <p className="small-30 text-accent fw-bold">4.5/5</p>
+               <div className="flex align-items-center justify-content-center">
+               {getRatings(4)}
+               <p className="small-16"> (13)</p>
+               </div>
+           </header><br />
+           <div className="w-85 m-auto">
+            {stars.map(star=>(
+                <div key={star.value}
+                 className="flex align-items-center justify-content-space-between"
+                 style={{margin:"0.8em 0"}}
+                 >
+                   <div   className="w-25 flex align-items-center justify-content-space-between">
+                    <span className="fw-bold">{star.value}</span>
+                    <span><i className="bi bi-star-fill text-star"></i></span>
+                    <span>({star.amount})</span>
+                    </div>
+                   <div className="w-70">
+                       <StarProgress value={star.amount} total={13}/>
+                   </div>
+                </div>
+            )
+            )}
+           </div>
+        </div>
+        <div className="book-review-list w-60 w-md-95">
+            <div className="book-review">
+             {getRatings(4)}
+             <p>The delivery was very fast. I am vey happy with this service.</p>
+             <p className="small-14 text-disabled">03 Dec. 2022 By Kelechi</p>
+            </div>
+            <div className="book-review">
+             {getRatings(4)}
+             <p>The delivery was very fast. I am vey happy with this service.</p>
+             <p className="small-14 text-disabled">03 Dec. 2022 By Kelechi</p>
+            </div>
+        </div>
+     </div>
+    )
+}

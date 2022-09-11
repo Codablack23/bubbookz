@@ -1,4 +1,5 @@
 import Head from "next/head";
+import CommunityContextProvider from "~/context/Community/Context";
 import Footer from "../footer";
 
 export default function HomeLayout({children,title}){

@@ -1,0 +1,187 @@
+[
+    {
+        "id": 288,
+        "name": "Jigawa",
+        "iso2": "JI"
+    },
+    {
+        "id": 289,
+        "name": "Enugu",
+        "iso2": "EN"
+    },
+    {
+        "id": 290,
+        "name": "Kebbi",
+        "iso2": "KE"
+    },
+    {
+        "id": 291,
+        "name": "Benue",
+        "iso2": "BE"
+    },
+    {
+        "id": 292,
+        "name": "Sokoto",
+        "iso2": "SO"
+    },
+    {
+        "id": 293,
+        "name": "Abuja Federal Capital Territory",
+        "iso2": "FC"
+    },
+    {
+        "id": 294,
+        "name": "Kaduna",
+        "iso2": "KD"
+    },
+    {
+        "id": 295,
+        "name": "Kwara",
+        "iso2": "KW"
+    },
+    {
+        "id": 296,
+        "name": "Oyo",
+        "iso2": "OY"
+    },
+    {
+        "id": 297,
+        "name": "Yobe",
+        "iso2": "YO"
+    },
+    {
+        "id": 298,
+        "name": "Kogi",
+        "iso2": "KO"
+    },
+    {
+        "id": 299,
+        "name": "Zamfara",
+        "iso2": "ZA"
+    },
+    {
+        "id": 300,
+        "name": "Kano",
+        "iso2": "KN"
+    },
+    {
+        "id": 301,
+        "name": "Nasarawa",
+        "iso2": "NA"
+    },
+    {
+        "id": 302,
+        "name": "Plateau",
+        "iso2": "PL"
+    },
+    {
+        "id": 303,
+        "name": "Abia",
+        "iso2": "AB"
+    },
+    {
+        "id": 304,
+        "name": "Akwa Ibom",
+        "iso2": "AK"
+    },
+    {
+        "id": 305,
+        "name": "Bayelsa",
+        "iso2": "BY"
+    },
+    {
+        "id": 306,
+        "name": "Lagos",
+        "iso2": "LA"
+    },
+    {
+        "id": 307,
+        "name": "Borno",
+        "iso2": "BO"
+    },
+    {
+        "id": 308,
+        "name": "Imo",
+        "iso2": "IM"
+    },
+    {
+        "id": 309,
+        "name": "Ekiti",
+        "iso2": "EK"
+    },
+    {
+        "id": 310,
+        "name": "Gombe",
+        "iso2": "GO"
+    },
+    {
+        "id": 311,
+        "name": "Ebonyi",
+        "iso2": "EB"
+    },
+    {
+        "id": 312,
+        "name": "Bauchi",
+        "iso2": "BA"
+    },
+    {
+        "id": 313,
+        "name": "Katsina",
+        "iso2": "KT"
+    },
+    {
+        "id": 314,
+        "name": "Cross River",
+        "iso2": "CR"
+    },
+    {
+        "id": 315,
+        "name": "Anambra",
+        "iso2": "AN"
+    },
+    {
+        "id": 316,
+        "name": "Delta",
+        "iso2": "DE"
+    },
+    {
+        "id": 317,
+        "name": "Niger",
+        "iso2": "NI"
+    },
+    {
+        "id": 318,
+        "name": "Edo",
+        "iso2": "ED"
+    },
+    {
+        "id": 319,
+        "name": "Taraba",
+        "iso2": "TA"
+    },
+    {
+        "id": 320,
+        "name": "Adamawa",
+        "iso2": "AD"
+    },
+    {
+        "id": 321,
+        "name": "Ondo",
+        "iso2": "ON"
+    },
+    {
+        "id": 322,
+        "name": "Osun",
+        "iso2": "OS"
+    },
+    {
+        "id": 323,
+        "name": "Ogun",
+        "iso2": "OG"
+    },
+    {
+        "id": 4926,
+        "name": "Rivers",
+        "iso2": "RI"
+    }
+]
