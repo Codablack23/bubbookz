@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function ForgotPassword(){
     return(
-    <FormContainer title={"Forgot Password"} >
+    <FormContainer title={"Forgot Password"} extraClass="">
         <div className="form--title">
             <h1 className="heading">Forgot Password</h1>
             <p className='sub-heading'>Enter the email address associated with your account</p>
