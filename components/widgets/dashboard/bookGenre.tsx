@@ -10,7 +10,7 @@ export default function SelectBookGenre(){
         <h1 className="heading">Select your favourite book genres</h1>
         <p className='sub-heading'>We use your favourite genres to make better book recommendations for you</p>
       </div>
-          <SelectBookCategory>
+          <SelectBookCategory/>
       <div style={style.notice}>
         <p style={style.p}>You can edit this anytime in your User preference in account settings </p>
         <Button {...BtnProps.continue}>Continue</Button>
