@@ -16,7 +16,7 @@ interface Response{
     status?:string,
 }
 class User{
-    private server:string = "http://localhost:5505"  
+    private server:string = process.env.NEXT_PUBLIC_API?process.env.NEXT_PUBLIC_API:"http://localhost:5505"  
     private config:{} = {
         headers: {"Access-Control-Allow-Origin": "Set-Cookie"},
         withCredentials:true,
