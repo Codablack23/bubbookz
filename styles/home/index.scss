@@ -50,12 +50,21 @@
         transition: all ease 0.3s;
     }
 }
-
+.Hero.bg-2{
+    background-image:linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), url("/images/cat3.svg") ;
+}
 @include sm{
     .Hero{
         text-align: center;
+       .hero-heading{
+        font-size: 20px;
+        >span{
+            font-size: 20px;
+        }
+       }
        .hero-text{
            margin:$margin * 1.2 auto;
+           font-size: 16px;
        }
        .hero-content{
            margin:$margin * 1.2 auto;

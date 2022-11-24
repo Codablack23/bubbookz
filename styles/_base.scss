@@ -556,3 +556,14 @@ hr{
     from{opacity: 0;}
     to{opacity: 1;}
  }
+ 
+ ant-carousel .slick-dots li.slick-active button{
+   background: #1DCEFD !important;
+   opacity: 1;
+ }
+ ant-carousel .slick-dots li button{
+    height: 12px;
+    width: 12px;
+    border: 1px solid #1DCEFD;
+    border-radius: 1000px;
+ }
