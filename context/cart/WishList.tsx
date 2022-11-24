@@ -10,18 +10,20 @@ export default function WishListProvider({children}){
 
 
     function addToWishList(book:Book){
+      // console.log(book)
       setWishList(prev=>[...prev,book])
     }
     function removefromWishList(id:string | number){
-        setWishList(prev=>prev.filter(item=>item.book_id == id))
+        setWishList(prev=>prev.filter(item=>item.book_id !== id))
     }
     useEffect(()=>{
-       localStorage.setItem("WishList",JSON.stringify(wishList))
-    },[wishList])
-
-    useEffect(()=>{
-        setWishList(JSON.parse(localStorage.getItem("wishlist")))
+       const wishlistStore = JSON.parse(localStorage.getItem("wishlist"))
+       setWishList(wishlistStore)
     },[])
+    
+    useEffect(()=>{
+      localStorage.setItem("wishlist",JSON.stringify(wishList))
+   },[wishList])
     return(
      <WishListContext.Provider 
      value={{

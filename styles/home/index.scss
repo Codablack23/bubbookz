@@ -29,7 +29,7 @@
     }
     .hero-content{
         margin-top: $margin;
-        max-width: 42%;
+        max-width: 500px;
     }
     .hero-btn{
         &:hover{
@@ -40,20 +40,17 @@
         justify-content: space-between;
         padding:$padding * 0.8 $padding;
         cursor: pointer;
-        border: 1px solid #22323F;
+        border: none;
+        outline: none;
+        // border: 1px solid #22323F;
+        @extend .card;
+        color: #fff;
+        background-color: $theme_color;
         border-radius: 7px;
-        background: unset;
         transition: all ease 0.3s;
     }
 }
 
-@include md{
-    .Hero{
-       .hero-content{
-           max-width: 80%;
-       }
-    }
-}
 @include sm{
     .Hero{
         text-align: center;
@@ -61,7 +58,6 @@
            margin:$margin * 1.2 auto;
        }
        .hero-content{
-           max-width: 95%;
            margin:$margin * 1.2 auto;
            
        }
@@ -1029,10 +1025,12 @@
 .community-heading{
     border-bottom: 1px solid #E5E5E5;
     .action-header{
-        h1{
+        h2{
             font-size: 32px;
             line-height: 38px;
             color: #2F455C;
+            font-weight: 800;
+            text-transform: capitalize;
             margin-bottom: $margin * 0.2;
         }
     }
@@ -1055,7 +1053,7 @@
     display: flex;
     padding-left: 0;
     list-style: none;
-    margin-top: $margin * 2.5;
+    margin-top: $margin * 2;
     margin-bottom: -$margin * 0.8 ;
     .tab{
         margin-right: $margin * 1.5;
@@ -1075,11 +1073,11 @@
         padding:0 $padding * 0.4;
         &::-webkit-scrollbar{
             width: 3px;
-            background-color: #ccc;
+            background-color: #FAFAFA;
             border-radius: 10px;
         }
         &::-webkit-scrollbar-thumb{
-            background-color: $theme_color;
+            @extend .bub-bg-accent;
             border-radius: 10px;
         }
     }
@@ -1220,8 +1218,14 @@
    }
    .book-category{
        display: block;
-       margin:$margin * 2 0;
-   }
+       margin:$margin;
+       border-radius: 7px;
+       padding: $padding * 0.5;
+    }
+    .book-category.active{
+        background-color: $theme_color;  
+        color: #fff;
+    }
    .recommended{
       header{
         border-left: 3px solid $theme_color;

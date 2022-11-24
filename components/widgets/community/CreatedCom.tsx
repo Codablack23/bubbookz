@@ -27,7 +27,7 @@ export default function CreatedCommunities({heading}:Props):JSX.Element{
    const {data} = useContext(CommunitiesContext)
    
    useEffect(()=>{
-    if(state && data){
+    if(state.user && data){
       setAllCom(data.filter(com=>com.createdBy == state.user.email))
     }
    },[state,data])

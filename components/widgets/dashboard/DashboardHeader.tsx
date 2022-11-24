@@ -31,7 +31,7 @@ export default function DashboardHeader(){
                <p className="text-disabled">{user.email}</p>
              </div><br />
              <div className="flex justify-content-space-between w-100">
-                 <p className="text-disabled">Account Type : {user.account_type}</p>
+                 <p className="text-disabled">Account Type : <b className="bub-case-capital">{user.account_type}</b></p>
                  <p>
                    <i className="bi bi-pencil text-disabled small-16 fw-bold"></i>
                  </p>
@@ -41,19 +41,19 @@ export default function DashboardHeader(){
                   marginBottom:"15px"
                 }}>
                   <p className="text-disabled small-14">School</p>
-                  <p className="small-16">{user.school}</p>
+                  <p className="small-16">{user.school?user.school:"N/A"}</p>
                 </div>
                 <div style={{
                   marginBottom:"15px"
                 }}>
                   <p className="text-disabled small-14">Faculty</p>
-                  <p className="small-16">Faculty of {user.faculty}</p>
+                  <p className="small-16">{user.faculty?`Faculty of ${user.faculty}`:"N/A"}</p>
                 </div>
                 <div style={{
                   marginBottom:"15px"
                 }}>
                   <p className="text-disabled small-14">Department</p>
-                  <p className="small-16">{user.faculty}</p>
+                  <p className="small-16">{user.department?user.department:"N/A"}</p>
                 </div>
              </div>
            </div>

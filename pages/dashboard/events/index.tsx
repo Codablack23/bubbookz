@@ -1,6 +1,9 @@
+import { message } from "antd";
+import { useEffect, useState } from "react";
 import SortWidget from "~/components/elements/filter";
 import DashboardLayout from "~/components/layout/dashboard/DashboardLayout";
 import DashboardEvent from "~/components/widgets/dashboard/events";
+import Events from "~/helpers/Events";
 
 
 const testEvents :{ 
@@ -33,6 +36,19 @@ const testEvents :{
 
 
 export default function DashboardEventsPage():JSX.Element{
+  const [subEvents,setSubEvents] = useState<any[]>([])
+
+  const getEvents = async()=>{
+    const response = await Events.getSubbedEvents()
+    if(response.error){
+      return message.error(response.error)
+    }
+    setSubEvents(response.events)
+  }
+
+  useEffect(() => {
+    getEvents()
+  }, [])
   return(
   <DashboardLayout activePage={"events"}>
     <header className="flex justify-content-space-between align-items-center bub-mb-3">
@@ -46,12 +62,13 @@ export default function DashboardEventsPage():JSX.Element{
      <SortWidget/>
      </div>
     </header>
+    {subEvents.length > 0?
    <div className="bub-grid">
-    {testEvents.map(event=>(
-        <DashboardEvent key={event.id} event={event}/>
-    ))
-    }
+      {subEvents.map(event=>(
+        <DashboardEvent key={event.event_id} event={event}/>
+    ))}
    </div>
+   :null}
   </DashboardLayout>
   )
 }

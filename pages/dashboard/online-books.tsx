@@ -1,6 +1,6 @@
 import { Image } from "antd"
 import Link from "next/link"
-import { useContext, useEffect, useState } from "react"
+import { ChangeEventHandler, useContext, useState } from "react"
 import DashboardLayout from "~/components/layout/dashboard/DashboardLayout"
 import NotFound from "~/components/widgets/NotFound"
 import { BookContext } from "~/context/book/BookContext"
@@ -29,18 +29,27 @@ function OnlineBook({book}){
     )
 }
 export default function OnlineBooksPage(){
+    const [query,setQuery] = useState("")
     const {bookData} = useContext(BookContext)
-
+    const handleInput:ChangeEventHandler<HTMLInputElement>=(e)=>{
+      setQuery(e.target.value)
+    }
     return(
         <DashboardLayout activePage={"online-books"}>
           <div className="bub__dashboard-online-books-page">
               <div className="bub__search-container">
                   <span className="bi bi-search"></span>
-                  <input type="text" placeholder="Search Books Online" />
+                  <input type="text" value={query} onChange={handleInput} placeholder="Search Books Online" />
               </div>
-              {bookData.filter(book=>book.format==="download").length > 0?(
+              {bookData
+              .filter(book=>book.format==="download")
+              .filter((book)=>book.title.toLowerCase().includes(query.toLowerCase().trim()))
+              .length > 0?(
               <div className="bub-grid bub-grid-center bub__online-books-overflow">
-                {bookData.filter(book=>book.format==="download").map(book=>
+                {bookData
+                .filter(book=>book.format==="download")
+                .filter((book)=>book.title.toLowerCase().includes(query.toLowerCase().trim()))
+                .map(book=>
                     <OnlineBook key={book.book_id} book={book}/>    
                 )}
                 </div>

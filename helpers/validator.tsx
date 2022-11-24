@@ -65,13 +65,13 @@ export function validateFields(validator:{inputType:string,inputField:string,inp
        phone:{
         validate(field="",fieldName="Phone Number"){
           if(isEmpty(field)){
-            addErrors(errors,"must not be empty",fieldName)
+            addErrors(errors,"should not be empty",fieldName)
           }
           else if(field.length < 9 ){
             addErrors(errors,"must atleast be 9 digits long",fieldName)
           }
-          else if(field.match(/[d|+]+/) !== null){
-            addErrors(errors,"must contain only digits and +",fieldName)
+          else if(field.match(/^(\+)?(\d+)/) === null){
+            addErrors(errors,"should contain only digits and maybe a '+' at the start",fieldName)
           }
         }
        },

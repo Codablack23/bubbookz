@@ -1,4 +1,5 @@
- import Link from 'next/link'
+ import Image from 'next/image'
+import Link from 'next/link'
 import styled from 'styled-components'
 import ActionHeader from './actionHeader'
 
@@ -25,14 +26,14 @@ import ActionHeader from './actionHeader'
            </button>
            <Link href={"/"}>
                 <a className="logo">
-                    <img src="/images/logo.svg" alt="" />
+                    <Image width={20} height={20} src="/images/logo.svg" alt="" />
                 </a>
             </Link>
           </div>
             <form className="search--form">
                 <div className="search--bar">
                     <span className="search--icon--container">
-                    <img src="/icons/search.svg" alt="" />
+                    <Image width={20} height={20} src="/icons/search.svg" alt="" />
                     </span>
                     <input 
                     type="text"
@@ -45,7 +46,7 @@ import ActionHeader from './actionHeader'
                 </div>
                 <Button backgroundColor="#1DCEFD" borderRadius={"7px"} height={"50px"} width={"73px"}>
                  <span>
-                     <img src="/icons/search-white.svg" alt="" />
+                     <Image width={20} height={20} src="/icons/search-white.svg" alt="" />
                  </span>
                 </Button>
             </form>
@@ -54,7 +55,7 @@ import ActionHeader from './actionHeader'
               <Link href={'/user/cart'}>
               <a>
                  <span className='cart--icon'>
-                     <img src="/icons/cart.svg" alt="" />
+                     <Image width={20} height={20} src="/icons/cart.svg" alt="" />
                  </span>
                  <span className="cart--text hide-lg">MY CART</span> 
                </a>

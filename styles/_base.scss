@@ -1,6 +1,7 @@
 @use 'sass:math';
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
 
+
 html{
     width: fit-content;
     min-width: 100%;
@@ -82,6 +83,24 @@ text-decoration: none;
     &:focus{
         outline: none;
     }
+}
+.btn-outline{
+    border-width:1px ;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    &:focus{
+        outline: none;
+    }
+}
+.btn-pill{
+    border-radius: 30px !important;
+}
+.btn-outline-theme{
+    @extend .btn-outline;
+    border-style: solid;
+    padding:0.3em;
+    border-color: $theme_color;
 }
 .pointer{
     cursor: pointer;
@@ -370,6 +389,7 @@ text-decoration: none;
 .error-text{
     color: #EB1D36 !important;
 }
+
 .btn-smaller{
     @include btn;
     padding:0.3em;
@@ -377,6 +397,7 @@ text-decoration: none;
 .btn-small{
    @include btn;
    padding:0.5em;
+   outline: none !important;
 }
 .text-disabled{
     color: #8E8E8E;
@@ -408,7 +429,7 @@ text-decoration: none;
 .input-group{
     display: flex;
     min-height: 35px;
-    border: 0.5px solid #888888;
+    border: 0.5px solid #e9e9e9;
     border-radius: 7px;
     align-items: center;
     .side{

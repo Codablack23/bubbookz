@@ -79,7 +79,7 @@ const DropDown =()=>{
   
   ]
   async function logOut(){
-    const response = await User.logOut()
+    await User.logOut()
     dispatch({type:"LOGOUT"})
   }
   useEffect(()=>{

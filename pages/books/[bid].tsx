@@ -89,6 +89,7 @@ export default function BookPage(){
 
       console.log(Router.query.bid)
       if(Router.query.bid){
+        setIsLoading(true)
         const response = await Books.getBook(Router.query?.bid as string)
         const bookResponse = await Books.getBooks()
         setIsLoading(false)

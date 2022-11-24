@@ -1,5 +1,8 @@
+import { message } from "antd";
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
+import { WishListContext } from "~/context/cart/WishList";
 
 function getRatings(end,star){
   return new Array(end).fill("").map((el,i)=>
@@ -9,17 +12,35 @@ function getRatings(end,star){
   )
 }
 function BookWidget({book}){
+  const {wishList,wishListActions} = useContext(WishListContext) 
+
+  const addToWishList = (book)=>()=>{
+     const checkWishList = wishList.find(item=>item.book_id ===  book.book_id)
+     if(!checkWishList){
+       wishListActions.addToWishList(book)
+       message.success(`${book.title} was added to wishlist successfully`)
+     }else{
+      wishListActions.removefromWishList(book.book_id)
+      message.success(`${book.title} was removed from wishlist successfully`)
+     }
+  }
   return(
     <div className="book card bg-white" key={""}>
     <div className=" ">
-   <Link href={`/books/${book.book_id}`} passHref>
+   
    <div className="book-img-container">
+      <Link href={`/books/${book.book_id}`} passHref>
       <Image height={"100%"} layout="responsive" width={"100%"} src={book.book_img} alt={book.title}  />
-      <button className="wishlist card">
-        <i className="bi bi-heart text-theme"></i>
-      </button>
+      </Link>
+       {wishList.find(item=>item.book_id === book.book_id)?
+          <button className="wishlist card bub-bg-red" onClick={addToWishList(book)}>
+          <i className="bi bi-heart text-white"></i>
+        </button>
+       :<button className="wishlist card" onClick={addToWishList(book)}>
+       <i className="bi bi-heart text-theme"></i>
+     </button>}
     </div>
-   </Link>
+  
    <br />
    <div className="book-info">
      <h3 className="book-title">{book.title}</h3>

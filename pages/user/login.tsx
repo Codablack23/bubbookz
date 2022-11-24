@@ -5,9 +5,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { AuthContext } from '~/context/auth/AuthContext'
 import { validateFields } from '~/helpers/validator'
-import { notification, Spin } from 'antd'
+import { message, notification, Spin } from 'antd'
 import User from '~/helpers/User'
 import { useRouter } from 'next/router'
+import FirebaseHelpers from '~/helpers/FirebaseHelpers'
 
 interface Errors{
   email?:string,
@@ -53,6 +54,28 @@ export default function Login(){
       }
      
     }
+    async function handleGoogleLogin(){
+      try {
+        const res = await FirebaseHelpers.LoginWithGoogle()
+        if(res.status === "authenticated"){
+          const response =  await User.loginWithGoogle({email:res.user.email})
+          if(response.status === "authorized"){
+            dispatch({type:"LOGIN",data:{user:response.user}})
+            const redirect = Router.query.redirect
+            window.location.assign(redirect?(redirect as string):"/dashboard")
+          }
+          else{
+            message.error(response.error)
+          }
+        }
+        else{
+          message.error(res.message)
+        }
+      } catch (error) {
+        message.error("Sorry an error occurred try again later")
+      }
+      
+    }
     return(
     <FormContainer title={"Login"} extraClass={null}>
         <div className="form--title">
@@ -89,7 +112,7 @@ export default function Login(){
              <hr />
            </div>
 
-           <Button  {...BtnProps.googleLogin}>
+           <Button  {...BtnProps.googleLogin} callBack={handleGoogleLogin}>
              <div className='flex justify-content-center' >
              <span style={style.googleLogo}>
                 <Image src="/icons/Google.svg" alt="google-icon" height={"30px"} width={"30px"} />

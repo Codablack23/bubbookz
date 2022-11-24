@@ -1,3 +1,4 @@
+import { message } from "antd"
 import { createContext, useEffect, useState } from "react"
 import Communities from "~/helpers/Communities"
 
@@ -13,7 +14,9 @@ export default function CommunitiesProvider({children}){
         if(response.status == "success"){
             setCommunities(response.communities)
         }
-        
+        else{
+          message.error("Sorry could not get communities")
+        }
     }
     useEffect(()=>{
       

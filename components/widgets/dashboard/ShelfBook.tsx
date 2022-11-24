@@ -16,10 +16,11 @@ interface Book{
 
 export default function ShelfBook({book}:Book){
     return(
-        <div className="bub__shelf-book bg-accent-1 w-100 w-md-60 w-sm-95">
+       <>
+        <div className="bub__shelf-book bg-accent-1 w-100 w-md-60 w-sm-95 bub-mb-2">
             <p className="bub__book-index">{book.index + 1}</p>
             <div className="bub__book-cover w-25">
-                <Image src={book.book_img} alt="" />
+                <Image src={book.book_img} alt="" height={150} width={150} />
             </div>
             <div className="bub__book-desc text-white w-45 w-md-100">
               <p className="small-16 text-white" style={{textTransform:"capitalize"}}>{book.title}</p>
@@ -29,7 +30,7 @@ export default function ShelfBook({book}:Book){
               </p>
               <br />
               <p className="bub__book-text-description">
-              {book.book_description}
+              {book.book_description.slice(0,100) + "..."}
               </p><br />
               {/* <p>
                 <span className="text-disabled small-16">Course Title: </span>
@@ -42,14 +43,16 @@ export default function ShelfBook({book}:Book){
 
               <div className="bub__book-action-mobile w-60">
               <Link href={`/books/${book.book_id}`} passHref>
-              <button className="btn bg-theme text-white w-40">Buy</button>
+              <button className="btn-small bg-theme text-white w-40">Buy</button>
               </Link>
             </div>
 
             </div>
             <div className="bub__book-action w-25">
-              <button className="btn bg-theme text-white w-70">Buy</button>
+              <button className="btn-small bg-theme text-white w-70">Buy</button>
             </div>
         </div>
+       <br />
+       </>
     )
 }

@@ -6,10 +6,12 @@ import {books} from '~/data/books'
 import { CartContext } from "~/context/cart/CartContext";
 import { Image } from "antd";
 import Link from "next/link";
+import { WishListContext } from "~/context/cart/WishList";
 
 
 const CartItem =({book})=>{
     const {dispatch} = useContext(CartContext)
+    const {wishList,wishListActions} = useContext(WishListContext)
     const [quantity,setQuantity] = useState(parseInt(book.quantity))
 
     const increaseQuantity = (increment)=>{
@@ -25,6 +27,16 @@ const CartItem =({book})=>{
         dispatch({type:"REMOVE_FROM_CART",data:{book_id:book.book_Id}})
     }
 
+    function handleWishList(book){
+      return ()=>{
+        const bookInWislist = wishList.find((item)=>item.book_id === book.book_id)
+        if(!bookInWislist){
+          wishListActions.addToWishList(book)
+        }else{
+         wishListActions.removefromWishList(book.book_id)
+        }
+      }
+    }
     useEffect(()=>{
         dispatch({
           type:"UPDATE_QUANTITY",
@@ -47,9 +59,18 @@ const CartItem =({book})=>{
                 <p className="small-16">{book.title}</p>
                 <p className="small-14 text-disabled">By {book.author}</p><br />
                 <div className="flex justify-content-center">
-                    <button className="wishlist-btn card">
-                        <i className="bi bi-heart text-theme"></i>
-                    </button>
+                    {
+                        wishList.find(item=>item.book_id === book.book_id)?(
+                        <button className="wishlist-btn card bub-bg-red" onClick={handleWishList(book)}>
+                            <i className="bi bi-heart text-white"></i>
+                        </button>
+                        )                        
+                        :(
+                        <button className="wishlist-btn card" onClick={handleWishList(book)}>
+                            <i className="bi bi-heart text-theme"></i>
+                        </button>
+                        )
+                    }
                     <button className="delete-btn" onClick={deleteCartItem}>
                         <i className="bi bi-trash"></i>
                     </button>

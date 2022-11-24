@@ -37,7 +37,7 @@ export default function Community({isActive,community}:ComProps):JSX.Element{
                 </p>
                 <p className="bub-mr-1">
                     <i className="bi bi-hand-thumbs-up bub-text-dark fw-bold bub-mr-1"></i>
-                    <span className="small-14">{community.likes} members</span> 
+                    <span className="small-14">{community.likes} Likes</span> 
                 </p>
                     <p className="bub-mr-1">
                     <i className="bi bi-chat-left-text bub-text-dark fw-bold bub-mr-1"></i>

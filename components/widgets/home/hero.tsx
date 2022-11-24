@@ -1,5 +1,8 @@
 export default function Hero(){
-    return(
+  const goToDashboard = ()=>{
+    window.location.replace("/dashboard")
+  }  
+  return(
         <div className="Hero">
          <div className="hero-content">
            <h1 className="hero-heading">
@@ -9,7 +12,7 @@ export default function Hero(){
            <p className="hero-text">
            Get Books recommended to you according to your course of study.
            </p>
-           <button className="hero-btn">
+           <button className="hero-btn" onClick = {goToDashboard}>
              <span>Go To DashBoard</span>
            <span>
              <span></span>

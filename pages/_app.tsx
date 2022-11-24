@@ -6,6 +6,7 @@ import CommunityContextProvider from '~/context/Community/Context'
 import CartProvider from '~/context/cart/CartContext'
 import BookProvider from '~/context/book/BookContext'
 import CommunitiesProvider from '~/context/communities/ComContext'
+import WishListProvider from '~/context/cart/WishList'
 
 
 function MyApp({ Component, pageProps }) {
@@ -16,9 +17,11 @@ function MyApp({ Component, pageProps }) {
       <BookProvider>
       <CommunitiesProvider>
       <CartProvider>
+      <WishListProvider>
         <Layout>
         <Component {...pageProps} />
         </Layout>
+       </WishListProvider>
       </CartProvider>
       </CommunitiesProvider>
       </BookProvider>

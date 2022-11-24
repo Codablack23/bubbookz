@@ -1,19 +1,26 @@
+type ButtonType = "button"|"submit"|"reset"
 interface ButtonProps {
     height?:string|number,
-    color?:string,
-    callBack?:Function,
-    children:string,
+    color?:{
+        text:string,
+        bg:string
+    },
+    callBack?:any,
+    children:JSX.Element | string,
     custom_styles?:{},
-    border?:{},
-    type?:string
+    border?:{
+        isExist:boolean,
+        color:string
+    },
+    type?:ButtonType | string
 }
 
 
-export default function Button<ButtonProps>(props){
+export default function Button(props:ButtonProps){
     const {height,color,callBack,children,custom_styles,border,type} = props
     return (
         <button className="form--btn"
-        type={type}
+        type={type as ButtonType}
         style={
             {
                 height,

@@ -8,38 +8,48 @@ import BookFunctions from '~/helpers/Books'
 import { Skeleton } from 'antd';
 import NotFound from '~/components/widgets/NotFound';
 import {LoadingState} from '~/components/widgets/loaders/allBooks';
+import { useRouter } from 'next/router';
 
 export default function Books(){
-    
+
+    const [range,setRange] = useState([0,50000])
     const [view,setView] = useState(true)
     const [books,setBooks] = useState([])
     const [isLoggedIn,setIsLoggedIn] = useState(false)
     const {state} = useContext(AuthContext)
     const [isLoading,setIsLoading] = useState(true)
-
+    const Router = useRouter()
 
     async function getBooks(){
+        setIsLoading(true)
         const response = await BookFunctions.getBooks()
         setIsLoading(false)
         if(response.status == "success"){
-            setBooks(response.books)
+            const category = Router.query.category
+            const f_books = category
+            ?response.books.filter((book)=>
+              book.tags.includes(category==="all"?"":category)
+              && (book.price >= range[0] && book.price <= range[1])
+            )
+            :response.books
+            setBooks(f_books)
         }
     }
     useEffect(()=>{
         getBooks()
-    },[])
+    },[Router,range])
     useEffect(()=>{
        setIsLoggedIn(state.isLoggedIn)
     },[state])
     return (
-        <BooksLayout category={""}>
+        <BooksLayout category={Router.query.category} range={{range,setRange}}>
               {isLoggedIn && (
                <div className="recommended">
               </div>
              )}
             <div className="BookList-container">
                 <header>
-                    <h1>All</h1>
+                    <h1 className='bub-case-capital'>{Router.query.category?Router.query.category:"All"}</h1>
                     <div>
                         <button className="change-list" onClick={()=>setView(false)}>
                         <i className={`bi bi-list-ul ${!view?"text-theme":""}`}></i>
@@ -67,7 +77,11 @@ export default function Books(){
                   ))}
                 
                  </div> 
-                ):<NotFound title={"Books"}/>
+                ):<NotFound 
+                title={`
+                ${Router.query.category || Router.query.category !=="all"?
+                Router.query.category
+                :""} Books`}/>
                 }
             </div>
         </BooksLayout>

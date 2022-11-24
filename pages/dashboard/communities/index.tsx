@@ -21,7 +21,7 @@ export default function DashboardCommunity():JSX.Element{
     const {state} = useContext(AuthContext)
 
     useEffect(()=>{
-      console.log(data)
+
       if(data && state){
          if(state.isLoggedIn){
             const allCom = (isActive === "created"
@@ -50,9 +50,11 @@ export default function DashboardCommunity():JSX.Element{
        <div className="flex d-sm-block align-items-center justify-content-space-between">
          <div className="flex align-items-center">
          <p className="fw-bold bub-text-dark bub-case-capital">Communities You Have {isActive}({communities.length})</p>
-         <button className="btn-small bg-theme">
+          {isActive === "created"?
+           <button className="btn-small bg-theme">
             <i className="bi bi-plus-lg"></i>
          </button>
+          :null}
          </div>
         <div className="w-15 w-md-30 w-sm-50">
          <SortWidget/>

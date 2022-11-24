@@ -45,7 +45,6 @@ export default function DashboardLayout({children,activePage}){
       }else{
         setIsLoading(false)
       }
-      console.log(response)
     
     }
     useEffect(()=>{

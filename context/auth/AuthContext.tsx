@@ -10,25 +10,8 @@ interface Props{
 }
 
 export default function AuthContextProvider(props:Props){
-    const [authUser,dispatch] = useReducer(authReducer,initialState,()=>{
-       if(typeof window !== "undefined"){
-         const auth:any = window.localStorage.getItem("auth")
-         if(typeof auth !== 'undefined'){
-            return JSON.parse(auth)
-         }
-         else{
-            return initialState
-         }
-       }
-    });
-    useEffect(()=>{
-        if(authUser && authUser !== null){
-            localStorage.setItem("auth",JSON.stringify(authUser))
-        }
-        else{
-            localStorage.setItem("auth",JSON.stringify(initialState))
-        }
-    },[authUser])
+    const [authUser,dispatch] = useReducer(authReducer,initialState);
+    
     return(
      <AuthContext.Provider value={{state:authUser,dispatch}}>
         {props.children}

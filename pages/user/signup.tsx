@@ -6,9 +6,10 @@ import SelectDropDown from '../../components/widgets/user/selectDropDown'
 import { useContext, useState } from 'react'
 import Image from 'next/image'
 import { validateFields } from '~/helpers/validator'
-import { notification, Spin } from 'antd'
+import { message, notification, Spin } from 'antd'
 import User from '~/helpers/User'
 import { AuthContext } from '~/context/auth/AuthContext'
+import FirebaseHelpers from '~/helpers/FirebaseHelpers'
 
 const schools =[
  "University Of Port Harcourt",
@@ -105,7 +106,31 @@ export default function SignUp(){
       const dropDown = document.querySelector(`#dropdown-${id}`) as HTMLDivElement
       dropDown.classList.toggle('hide')
     }
-
+    async function handleGoogleSignUp(){
+     try {
+      const res = await FirebaseHelpers.LoginWithGoogle()
+      if(res.status == "authenticated"){
+        const names = res.user.displayName.split(" ")
+        const response =  await User.signUpWithGoogle({
+          email:res.user.email,
+          firstname:names[0],
+          lastname:names[1]
+        })
+        if(response.status === "success"){
+          dispatch({type:"LOGIN",data:{user:response.user}})
+          window.location.assign("/dashboard")
+        }
+        else{
+          message.error(response.error)
+        }
+         
+      }else{
+        message.error(res.error)
+      }
+     } catch (error) {
+       message.error("Sorry an error occurred try again later")
+     }
+    }
     return(
       <FormContainer title={"Sign Up"}  extraClass={null}>
       <div className="form--title">
@@ -250,7 +275,7 @@ export default function SignUp(){
            <hr />
          </div>
 
-         <Button {...BtnProps.googleSignUp} >
+         <Button {...BtnProps.googleSignUp} callBack={handleGoogleSignUp}>
            <div className='flex align-items-center justify-content-center'>
               <Image src="/icons/Google.svg" alt="" height={"23px"} width={"23px"}/>
               <span className="text-disabled small-14 fw-bold bub-ml-1">Sign Up with Google</span>

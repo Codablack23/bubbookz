@@ -33,7 +33,7 @@ const Community=({community}:Props)=>{
          <div className="info w-70 w-md-100">
             <div className="title flex justify-content-space-between" style={{ alignItems: "center" }}>
                <h1 className="small-20 w-70">{community.title}</h1>
-               {community.createdBy == state.user.email?
+               {state.user && community.createdBy == state.user.email?
                <button className="btn-small w-30">Edit</button>
                :<Link href={`/community/${community.community_id}`} passHref>
                <button className="btn-small w-30 bg-theme text-white">Join</button>

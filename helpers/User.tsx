@@ -2,10 +2,10 @@ import axios from "axios"
 
 interface RegisterDetails{
     email:string,
-    password:string,
-    school:string,
-    faculty:string,
-    department:string,
+    password?:string,
+    school?:string,
+    faculty?:string,
+    department?:string,
     firstname:string,
     lastname:string
 }
@@ -44,7 +44,30 @@ class User{
              axios:err
          }
         })
+     }async loginWithGoogle(user:{email:string}){
+        return await axios.post(`${this.server}/user/google-login`,user,this.config)
+        .then(res=>{
+            const data:Response = res.data
+            return {...data}
+        }).catch<Response>(err=>{
+         return {
+             error:"an error occurred in server",
+             axios:err
+         }
+        })
+        
      }
+     async signUpWithGoogle(newUser:RegisterDetails){
+         return await axios.post(`${this.server}/user/google-signup`,newUser,this.config)
+         .then(res=>{
+             return {...res.data}
+         }).catch(err=>{
+          return {
+              error:"an error occurred in server",
+              axios:err
+          }
+         })
+      }
      async authenticate(){
         return await axios.post(`${this.server}/user/auth`,{},this.config)
         .then(res=>{
