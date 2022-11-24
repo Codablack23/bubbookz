@@ -1,5 +1,6 @@
  import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 import styled from 'styled-components'
 import ActionHeader from './actionHeader'
 
@@ -18,6 +19,7 @@ import ActionHeader from './actionHeader'
     `
 
  export default function SearchHeader({setNavOpen}){
+    const [query,setQuery] = useState("")
      return( 
          <div className="search--header">
           <div className="logo-container">
@@ -37,6 +39,8 @@ import ActionHeader from './actionHeader'
                     </span>
                     <input 
                     type="text"
+                    value={query}
+                    onChange={(e)=>setQuery(e.target.value)}
                     className="search--input" 
                     placeholder='Search by Keyword, Author, Title, ISBN'
                     />
@@ -44,11 +48,13 @@ import ActionHeader from './actionHeader'
                         <option value="">All Categories</option>
                     </select>
                 </div>
-                <Button backgroundColor="#1DCEFD" borderRadius={"7px"} height={"50px"} width={"73px"}>
+                <Link href={`/search?book_title=${query}`} passHref>
+                <button className='btn bg-theme w-15' type='button'>
                  <span>
                      <Image width={20} height={20} src="/icons/search-white.svg" alt="" />
                  </span>
-                </Button>
+                </button>
+                </Link>
             </form>
             <div className="actions-mobile-container">
             <ActionHeader className={"header--actions-mobile"}/>

@@ -5,10 +5,16 @@ import { WishListContext } from "~/context/cart/WishList";
 import {Ratings} from "~/helpers/getRatings"
 
 export default function BookResult({book,isOnWishList}):JSX.Element{
-    const {wishListActions} = useContext(WishListContext)
+    const {wishList,wishListActions} = useContext(WishListContext)
     function handleClick(){
-        wishListActions.removefromWishList(book.book_id)
-        message.success(`${book.title} has been removed from your wishlist`)
+        const checkWishList = wishList.find(item=>item.book_id ===  book.book_id)
+        if(!checkWishList){
+          wishListActions.addToWishList(book)
+          message.success(`${book.title} was added to wishlist successfully`)
+        }else{
+         wishListActions.removefromWishList(book.book_id)
+         message.success(`${book.title} was removed from wishlist successfully`)
+        }
     }
     return(
         <div className="bub__book-result br card bg-white">
