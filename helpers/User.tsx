@@ -28,7 +28,6 @@ class User{
         withCredentials:true,
     }
     async loginUser(user:{email:string,password:string}){
-        console.log(process.env.NEXT_PUBLIC_API)
        return await axios.post(`${this.server}/user/login`,user,this.config)
        .then(res=>{
            const data:Response = res.data
@@ -76,7 +75,6 @@ class User{
          })
       }
      async authenticate(){
-        console.log(process.env.NEXT_PUBLIC_API,"API HERE")
         return await axios.post(`${this.server}/user/auth`,{},this.config)
         .then(res=>{
             return {...res.data}

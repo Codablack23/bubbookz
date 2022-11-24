@@ -26,6 +26,7 @@ interface InfoProps{
 }
 
 export default function Community(){
+    const [query,setQuery] = useState("")
     const [loggedIn,setLoggedIn] = useState(false)
     const [isLoading,setIsLoading] = useState(true)
     const [communities,setCommunities] = useState([])
@@ -35,8 +36,9 @@ export default function Community(){
     async function getAllCommunities(){
       const response = await CommFunctions.getCommunities()
       setIsLoading(false)
-      setCommunities(response.communities)
-      
+      if(!response.error){
+        setCommunities(response.communities)
+      }      
    }
   
     useEffect(() => {
@@ -50,15 +52,17 @@ export default function Community(){
 
              <div className="search-community-container container card w-100 min-vh-10">
                 <p><i className="bi bi-search"></i></p>
-                <input type="text" placeholder="Search Communities By Keyword" />
+                <input type="text" value ={query} onChange={(e)=>setQuery(e.target.value)} placeholder="Search Communities By Keyword" />
             </div>
               <div className="flex justify-content-space-between" style={{flexWrap:"wrap"}}>
                  {isLoading
                  ?<LoadingState/>
-                 :communities.length > 0
+                 :communities
+                 .filter(com=>com.title.toLowerCase().includes(query.trim().toLowerCase()))
+                 .length > 0
                  ?<Communities 
                    category="Trending" 
-                   community={communities}
+                   community={communities.filter(com=>com.title.toLowerCase().includes(query.trim().toLowerCase()))}
                    />
                  :<div className='w-65 w-md-100'>
                   <NotFound title={"communities"}/>
