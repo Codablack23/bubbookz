@@ -1,5 +1,6 @@
 import 'antd/dist/antd.css'
 import '../styles/globals.scss'
+import "bootstrap-icons/font/bootstrap-icons.css"
 import Layout from '../components/layout/Layout'
 import AuthContextProvider from '~/context/auth/AuthContext'
 import CommunityContextProvider from '~/context/Community/Context'
