@@ -1,7 +1,13 @@
 import axios from "axios"
 
+function getEnv(){
+    return {
+        api: process.env.NEXT_PUBLIC_API,
+        env: process.env.NEXT_PUBLIC_ENV
+    }
+}
 class EventsFunctions {
-    private server:string = process.env.NEXT_PUBLIC_API?process.env.NEXT_PUBLIC_API:"http://localhost:5505" 
+    private server:string = getEnv().env === "production"?getEnv().api:"http://localhost:5505" 
     private config:{} = {
         headers: {"Access-Control-Allow-Origin": "Set-Cookie"},
         withCredentials:true,

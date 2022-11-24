@@ -1,5 +1,11 @@
 import axios from "axios"
 
+function getEnv(){
+    return {
+        api: process.env.NEXT_PUBLIC_API,
+        env: process.env.NEXT_PUBLIC_ENV
+    }
+}
 interface RegisterDetails{
     email:string,
     password?:string,
@@ -16,12 +22,13 @@ interface Response{
     status?:string,
 }
 class User{
-    private server:string = process.env.NEXT_PUBLIC_API?process.env.NEXT_PUBLIC_API:"http://localhost:5505"  
+    private server:string = getEnv().env === "production"?getEnv().api:"http://localhost:5505"  
     private config:{} = {
         headers: {"Access-Control-Allow-Origin": "Set-Cookie"},
         withCredentials:true,
     }
     async loginUser(user:{email:string,password:string}){
+        console.log(process.env.NEXT_PUBLIC_API)
        return await axios.post(`${this.server}/user/login`,user,this.config)
        .then(res=>{
            const data:Response = res.data
@@ -69,6 +76,7 @@ class User{
          })
       }
      async authenticate(){
+        console.log(process.env.NEXT_PUBLIC_API,"API HERE")
         return await axios.post(`${this.server}/user/auth`,{},this.config)
         .then(res=>{
             return {...res.data}
