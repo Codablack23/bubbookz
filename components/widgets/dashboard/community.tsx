@@ -41,7 +41,7 @@ export default function Community({isActive,community}:ComProps):JSX.Element{
                 </p>
                     <p className="bub-mr-1">
                     <i className="bi bi-chat-left-text bub-text-dark fw-bold bub-mr-1"></i>
-                    <span className="small-14">500 members</span> 
+                    <span className="small-14">500 messages</span> 
                 </p>
             </div>
             <div className="flex d-md-block justify-content-space-between bub-mt-2 bub-pr-1">

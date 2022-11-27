@@ -141,10 +141,10 @@ export default function CommunityDetailLayout({pageName,children,activepage}){
         </header>
         <div className="container community-content">
          <div className="bub-grid">
-            <div className="grid-col-8 grid-col-md-12 main-content max-vh-90">
+            <div className="grid-col-7 grid-col-md-12 main-content max-vh-90">
              {children}
             </div>
-            <div className="grid-col-4 grid-col-md-12 container-small">
+            <div className="grid-col-5 grid-col-md-12 container-small">
               <CreatedCommunities heading={"Created"}/><br/>
               <CreatedCommunities heading={"Joined"}/>
             </div>

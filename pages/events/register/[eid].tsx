@@ -40,8 +40,8 @@ interface Event{
 }
 function EventDetailCard({event}:{event:Event}){
    return (
-    <div className="event-cover w-100 card">
-           <Image src={event.img_link} width="100%" className="w-100 img-fluid" alt="" />
+    <div className="event-cover w-100 card br">
+           <Image src={event.img_link} width="100%" className="w-100 img-fluid br" alt="" />
            <div className="img-overlay">
             <h1 className="font-a text-white w-100 flex justify-content-space-between" style={{fontWeight:400,fontSize:"24px"}}>Explore the Metaverse World <span>
             <span style={{marginRight:"5px"}}><i className="bi bi-geo-alt"></i></span>
@@ -57,7 +57,7 @@ function EventDetailCard({event}:{event:Event}){
                 </div>
                 ))}
              </div><br />
-             <div className="flex justify-content-space-between text-white">
+             <div className="flex bg-accent-1 justify-content-space-between text-white overlay-2 bub-p-1">
                  
                  <p>
                  <span style={{marginRight:"7px"}}><i className="bi bi-calendar-event"></i></span>

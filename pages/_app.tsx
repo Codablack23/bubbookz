@@ -8,6 +8,7 @@ import CartProvider from '~/context/cart/CartContext'
 import BookProvider from '~/context/book/BookContext'
 import CommunitiesProvider from '~/context/communities/ComContext'
 import WishListProvider from '~/context/cart/WishList'
+import EventContextProvider from '~/context/EventsContext'
 
 
 function MyApp({ Component, pageProps }) {
@@ -19,9 +20,11 @@ function MyApp({ Component, pageProps }) {
       <CommunitiesProvider>
       <CartProvider>
       <WishListProvider>
+        <EventContextProvider>
         <Layout>
         <Component {...pageProps} />
         </Layout>
+        </EventContextProvider>
        </WishListProvider>
       </CartProvider>
       </CommunitiesProvider>

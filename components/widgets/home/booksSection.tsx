@@ -1,9 +1,26 @@
-import { message } from "antd";
+import { message, Skeleton } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
 import { WishListContext } from "~/context/cart/WishList";
 
+function LoadingBook(){
+  return (
+   <div className="book card bg-white">
+     <Skeleton.Button
+     active={true}
+     block
+     style={{height:"200px"}} 
+    />
+    <div className="bub-mt-2">
+    <Skeleton
+    active={true}
+    paragraph={{rows:4}}
+    />
+    </div>
+   </div>
+  )
+}
 function getRatings(end,star){
   return new Array(end).fill("").map((el,i)=>
     <span key={i}>
@@ -66,14 +83,20 @@ export default function BooksSection({heading,books}){
       <section className="books-section">
           <header className="books-header flex justify-content-space-between align-items-center" style={{marginBottom:"1.2em"}}>
             <p>{heading}</p>
-            <Link href={"/"}>
+            {books.length > 0?
+             <Link href={"/books?category=all"}>
              <a className="view-all-link text-theme">View all </a>
             </Link>
+            :null}
           </header>
           <div className={`book-grid book-grid-${heading.replaceAll(" ","-")}`}>
-                 {books.map((book,i)=>(
+                {books.length > 0?
+                 books.map((book,i)=>(
                   <BookWidget key={`${i}-all-books`} book={book}/>
-                 ))}
+                 ))
+                :new Array(4).fill("").map((item,index)=>(
+                  <LoadingBook key={`${index}-empty`}/>
+                ))}
                </div>
                   <button className="prev card" onClick={()=>Scroll(-200,heading)}>
                     <i className="bi bi-chevron-left"></i>

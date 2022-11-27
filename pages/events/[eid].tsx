@@ -180,18 +180,19 @@ export default function EventPage(){
     const [event,setEvent] = useState({})
     const [isLoading,setIsLoading] = useState(true)
 
-    async function getEvent(){
-        if(params){
-         const response = await Events.getEvent(params.query?.eid as string)
-         setIsLoading(false);
-         if(response.status == "success"){
-            console.log(response.event)
-            setEvent(response.event)
-         }
-         console.log(response)
-        }
-    }
+  
     useEffect(() => {
+        async function getEvent(){
+            if(params){
+             const response = await Events.getEvent(params.query?.eid as string)
+             setIsLoading(false);
+             if(response.status == "success"){
+                console.log(response.event)
+                setEvent(response.event)
+             }
+             console.log(response)
+            }
+        }
         getEvent()
     }, [params])
     return(
