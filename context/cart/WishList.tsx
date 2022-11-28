@@ -18,11 +18,11 @@ export default function WishListProvider({children}){
     }
     useEffect(()=>{
        const wishlistStore = JSON.parse(localStorage.getItem("wishlist"))
-       setWishList(wishlistStore)
+       setWishList(wishlistStore?wishlistStore:[])
     },[])
     
     useEffect(()=>{
-      localStorage.setItem("wishlist",JSON.stringify(wishList))
+      localStorage.setItem("wishlist",JSON.stringify(wislist?wishlist:[]))
    },[wishList])
     return(
      <WishListContext.Provider 

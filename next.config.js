@@ -2,7 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["localhost","https://api.bubbookz.com"],
+    domains: [
+    "localhost",
+    "https://api.bubbookz.com",
+    "http://api.bubbookz.com",
+    ] 
+    ,
   },
 }
 
