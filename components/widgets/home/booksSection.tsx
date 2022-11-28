@@ -1,5 +1,4 @@
-import { message, Skeleton } from "antd";
-import Image from "next/image";
+import { message, Skeleton,Image} from "antd";
 import Link from "next/link";
 import { useContext } from "react";
 import { WishListContext } from "~/context/cart/WishList";
@@ -47,7 +46,7 @@ function BookWidget({book}){
    
    <div className="book-img-container">
       <Link href={`/books/${book.book_id}`} passHref>
-      <Image height={"100%"} layout="responsive" width={"100%"} src={book.book_img} alt={book.title}  />
+      <Image height={"100%"} width={"100%"} src={book.book_img} alt={book.title}  />
       </Link>
        {wishList.find(item=>item.book_id === book.book_id)?
           <button className="wishlist card bub-bg-red" onClick={addToWishList(book)}>

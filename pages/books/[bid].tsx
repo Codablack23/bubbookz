@@ -7,10 +7,9 @@ import { BookRating } from  '~/components/widgets/books/DescTab'
 import {books} from "~/data/books"
 import {getRatings} from '~/helpers/getRatings'
 import {useRouter} from "next/router"
-import { message, Skeleton, Tabs } from 'antd'
+import { message, Skeleton, Tabs,Image } from 'antd'
 import Books from '~/helpers/Books'
 import NotFound from '~/components/widgets/NotFound'
-import Image from 'next/image'
 import { CartContext } from '~/context/cart/CartContext'
 
 function SingleBookLoadingState():JSX.Element{
@@ -85,38 +84,7 @@ export default function BookPage(){
             setQuantity(1)
         }
     }
-    async function getBook(){
-
-      console.log(Router.query.bid)
-      if(Router.query.bid){
-        setIsLoading(true)
-        const response = await Books.getBook(Router.query?.bid as string)
-        const bookResponse = await Books.getBooks()
-        setIsLoading(false)
-        if(response.status == "success"){
-           setBook(response.book)
-           console.log(response.book)
-           const currentBook = response.book
-           if(bookResponse.status == "success"){
-            const bookTags = response.book.tags.split(",")
-            console.log(bookTags)
-            setRelatedBooks(
-              bookResponse.books
-              .filter(relatedBook=>relatedBook.book_id != Router.query.bid)
-              .filter(mainBook=>{
-                     if( 
-                     mainBook.department == currentBook.department
-                    || mainBook.faculty == currentBook.faculty                    
-                    ){
-                    return mainBook
-                  }
-              })
-            )
-          }
-        }
-      }
-      
-    }
+   
     function handleAddToCart(bookItem){
       dispatch({
         type:"ADD_TO_CART",
@@ -125,6 +93,39 @@ export default function BookPage(){
       message.success(`${book.title} added to your cart successfully`)
     }
     useEffect(()=>{
+      async function getBook(){
+
+        console.log(Router.query.bid)
+        if(Router.query.bid){
+          setIsLoading(true)
+          const response = await Books.getBook(Router.query?.bid as string)
+          const bookResponse = await Books.getBooks()
+          setIsLoading(false)
+          if(response.status == "success"){
+             setBook(response.book)
+             console.log(response.book)
+             const currentBook = response.book
+             if(bookResponse.status == "success"){
+              const bookTags = response.book.tags.split(",")
+              console.log(bookTags)
+              setRelatedBooks(
+                bookResponse.books
+                .filter(relatedBook=>relatedBook.book_id != Router.query.bid)
+                .filter(mainBook=>{
+                       if( 
+                       mainBook.department == currentBook.department
+                      || mainBook.faculty == currentBook.faculty      
+                                    
+                      ){
+                      return mainBook
+                    }
+                })
+              )
+            }
+          }
+        }
+        
+      }
       getBook()
     },[Router])
     
@@ -140,7 +141,7 @@ export default function BookPage(){
               >
                   <div className="book-details w-75 w-md-100">
                      <div className="book-cover">
-                         <Image src={book.book_img} layout='responsive' height={"100%"} width={"100%"} alt=""/>
+                         <Image src={book.book_img} height={"100%"} width={"100%"} alt=""/>
                          
                      </div>
                      <div className="book-info w-50 w-md-50 w-sm-90">
