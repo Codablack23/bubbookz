@@ -22,7 +22,7 @@ export default function WishListProvider({children}){
     },[])
     
     useEffect(()=>{
-      localStorage.setItem("wishlist",JSON.stringify(wislist?wishlist:[]))
+      localStorage.setItem("wishlist",JSON.stringify(wishList?wishList:[]))
    },[wishList])
     return(
      <WishListContext.Provider 
