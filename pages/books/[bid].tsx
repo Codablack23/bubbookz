@@ -38,9 +38,7 @@ function BookInfo({book}){
   function parseJSON(data){
     console.log(data)
     try {
-      return JSON.parse(
-        JSON.parse(data)
-       )
+      return JSON.parse(data)
     } catch (error) {
       console.log(error)
       return {}
