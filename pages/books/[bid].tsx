@@ -35,11 +35,20 @@ function SingleBookLoadingState():JSX.Element{
   )
 }
 function BookInfo({book}){
+  function parseJSON(data){
+    console.log(data)
+    try {
+      return JSON.parse(
+        JSON.parse(data)
+       )
+    } catch (error) {
+      console.log(error)
+      return {}
+    }
+  }
   const {TabPane} = Tabs
   const {book_details} = book
-  const details = JSON.parse(
-    JSON.parse(book_details)
-   )
+  const details = parseJSON(book_details)
   return(
     <div className="product-desc w-100 m-auto">
     <Tabs defaultActiveKey='1'>
@@ -115,7 +124,7 @@ export default function BookPage(){
                        if( 
                        mainBook.department == currentBook.department
                       || mainBook.faculty == currentBook.faculty      
-                                    
+
                       ){
                       return mainBook
                     }
